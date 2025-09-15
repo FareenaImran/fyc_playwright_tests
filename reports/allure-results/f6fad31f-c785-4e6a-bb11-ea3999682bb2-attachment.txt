@@ -1,0 +1,27 @@
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:pain-similar@gnjvogqr.mailosaur.net
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:common_checks.py:130 
+Navigated to learner Portal : https://beta.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:common_checks.py:132 
+Login successful for role: learner - pain-similar@gnjvogqr.mailosaur.net
+[32mINFO    [0m TestLogger:common_checks.py:133 
+Navigated to : https://beta.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:test_inquiry_flow.py:55 
+Inquiry verified successfully! 'YLPYMHNLSDJKQFSVQQGDZZSNEHYBKFWHXEYGTIZCAPPTSKLMPI' appears in Inquiried Courses
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:fyctest5401+42@gmail.com
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:test_inquiry_flow.py:69 
+Inquiry verified successfully! 'YLPYMHNLSDJKQFSVQQGDZZSNEHYBKFWHXEYGTIZCAPPTSKLMPI' appears in TP's Inquiry Table
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:sheraz@newtales.co
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:common_checks.py:130 
+Navigated to admin Portal : https://beta-admin.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:common_checks.py:132 
+Login successful for role: admin - sheraz@newtales.co
+[32mINFO    [0m TestLogger:common_checks.py:133 
+Navigated to : https://beta-admin.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:test_inquiry_flow.py:90 
+Inquiry verified successfully! 'YLPYMHNLSDJKQFSVQQGDZZSNEHYBKFWHXEYGTIZCAPPTSKLMPI' appears in Inquiry table

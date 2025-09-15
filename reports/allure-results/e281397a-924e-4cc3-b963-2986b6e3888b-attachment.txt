@@ -1,0 +1,14 @@
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:fareenaimran999@gmail.com
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:common_checks.py:125 Error  :Error
+Invalid email or password
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:fyctest5401+13@gmail.com
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:common_checks.py:130 
+Navigated to trainer Portal : https://beta-tp.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:common_checks.py:132 
+Login successful for role: trainer - fyctest5401+13@gmail.com
+[32mINFO    [0m TestLogger:common_checks.py:133 
+Navigated to : https://beta-tp.findyourcourses.org/portal/dashboard
