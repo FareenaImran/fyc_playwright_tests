@@ -3,8 +3,8 @@ name: Deploy Allure Report
 on:
   push:
     branches:
-      - main   # change if your default branch is "master"
-  workflow_dispatch:   # allows you to trigger manually from GitHub Actions tab
+      - main   # or master, depending on your default branch
+  workflow_dispatch:   # allows manual trigger
 
 jobs:
   deploy:
@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Allure
+      - name: Install dependencies
         run: npm install -g allure-commandline --save-dev
 
       - name: Generate Allure Report
