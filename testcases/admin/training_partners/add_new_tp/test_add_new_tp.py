@@ -1,34 +1,12 @@
-import pytest
-
-from src.pages.admin.add_new_tp.add_new_tp_steps import AddNewTP
-from src.utils.helpers.common import login_and_verify_dashboard
+from src.utils.fixtures.tp_fixtures import setup_new_tp
 from src.utils.helpers.common_checks import  check_element_in_table
 from src.utils.helpers.logger import logger
 
 
-@pytest.mark.parametrize("role",["admin"])
-async def test_add_new_tp(page,role):
-    #Login
-    await login_and_verify_dashboard(page,role)
-    #Navigate to Training Partners
-    await page.get_by_text("Training Partners").click()
-    logger.info(f"Navigated to : {page.url}")
-
-    #Add New TP
-    new_tp=page.get_by_role("button" , name="Add New TP")
-    await new_tp.wait_for(state="visible")
-    await new_tp.click()
-    logger.info(f"Navigated to : {page.url}")
-    logger.info("\n-------Adding New TP--------\n")
-
-    #Fill all three steps
-    try:
-        admin_tp=AddNewTP(page)
-        tp_name=await admin_tp.add_new_tp()
-        print(f"\nAdded TP [{tp_name}] successfully !!")
-    except Exception as e:
-        raise Exception(f"Got Error while adding new TP {str(e)}")
-
+async def test_add_new_tp(page,setup_new_tp):
+    '''Add New TP By Admin'''
+    #Add new tp
+    tp_name=setup_new_tp
     logger.info("\n-------Verifying TP Name in table--------\n")
     #Navigate to 'Needs Attention'
     await page.get_by_text("Needs Attention").click()

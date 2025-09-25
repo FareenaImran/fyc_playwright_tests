@@ -1,4 +1,5 @@
 import re
+from asyncio import wait_for
 from datetime import date, timedelta
 from playwright.async_api import expect
 from src.utils.helpers.common_checks import check_and_close_page_modal, check_login_error_message
@@ -68,3 +69,38 @@ async def pick_date(page, locator, days_from_today=0):
     # Click the day within this specific calendar
     await calendar.locator(f'button:has-text("{target_date.day}")').first.click()
     return target_date
+
+#Get card by specific locator [name, book,mark]
+async def find_card_by_element(page,elements,element):
+    first_ele=elements.first
+    await first_ele.wait_for(state="visible")
+    page_no = 1
+    while True:
+        print(f"Finding {element} in Page # {page_no}....")
+        await page.wait_for_load_state('domcontentloaded')
+        all_elements = await elements.all()
+
+        for elem in all_elements:
+            title = await elem.get_attribute("title")
+            if  title.strip() == element:
+                print(f"Found '{element}' on page {page_no}.")
+                parent_ele=elem.first.locator("xpath=..")
+                await parent_ele.wait_for(state="visible")
+                await parent_ele.click()
+                await page.wait_for_load_state('domcontentloaded')
+                return element
+
+        next_btn = page.locator("//button[contains(text(),'Next')]")
+        await next_btn.scroll_into_view_if_needed()
+
+        if await next_btn.is_enabled():
+            page_no += 1
+            await next_btn.click()
+        else:
+            print("no more pages to check further..")
+            break
+
+    raise Exception(f"Did not find {element} in any page ")
+
+
+

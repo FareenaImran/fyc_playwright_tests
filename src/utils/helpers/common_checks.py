@@ -5,6 +5,7 @@ from src.utils.helpers.logger import logger
 from playwright.async_api import expect, Error
 
 
+
 #Check butn is enabled?
 async def check_is_btn_enabled(page,btn):
     await btn.scroll_into_view_if_needed()
@@ -115,9 +116,10 @@ async def check_ele_in_all_pages(page,text,column,status):
             await page.wait_for_load_state('networkidle')
             continue
         else:
+            print("No more pages to check further..")
             break
 
-    raise Exception(f"Did not find {original_text} in current page and no more pages to check further..")
+    raise Exception(f"Did not find {original_text} in any page ")
 
 
 

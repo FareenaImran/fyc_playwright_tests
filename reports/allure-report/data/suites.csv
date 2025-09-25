@@ -1,2 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","35447","test_tp_status_count","testcases.admin.training_partners","Thu Sep 25 13:41:48 PKT 2025","passed","Thu Sep 25 13:42:23 PKT 2025","","test_status_count","",""
+"Add new TP by Admin","27940","test_tp_added_by_admin_appears_with_claim_option","testcases.learner","Thu Sep 25 20:41:57 PKT 2025","passed","Thu Sep 25 20:42:25 PKT 2025","","test_claim_profile","",""
