@@ -1,4 +1,3 @@
-from src.utils.test_data.csv_reader import get_random_credentials_from_google_sheet
 from src.utils.helpers.login_helper import login_with_credentials
 
 

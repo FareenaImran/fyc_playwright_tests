@@ -1,29 +1,23 @@
 import os
 import shutil
-import sys
-import asyncio
 import webbrowser
-from src.utils.helpers.popup_handler import handle_popup
-
-if sys.platform.startswith("win"):
-    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
-
-
 import pytest
-from dotenv import load_dotenv
-from playwright.async_api import async_playwright
 import platform
 import subprocess
-from pathlib import Path
+from playwright.async_api import async_playwright
+from src.utils.helpers.popup_handler import handle_popup
 
-# Load .env early
-env_path = Path(__file__).resolve().parents[1] / "config" / ".env"
-load_dotenv(dotenv_path=env_path)
+
+#Global timeouts for every test
+@pytest.fixture(autouse=True)
+def set_global_timeouts(page):
+    page.set_default_timeout(15000)              # 15s for locator
+    page.set_default_navigation_timeout(30000)   # 20s
+    yield
 
 def pytest_sessionstart(session):
     results_dir = "reports/allure-results"
     if os.path.exists(results_dir):
-        # print("Cleaning old Allure results before test run...")
         shutil.rmtree(results_dir)
     os.makedirs(results_dir, exist_ok=True)  # Ensure directory exists
 

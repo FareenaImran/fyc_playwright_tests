@@ -1,5 +1,4 @@
 from src.base.base_page import BasePage
-from src.utils.helpers.common_checks import check_ele_in_all_pages
 
 
 class AdminLearners(BasePage):

@@ -2,9 +2,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-env_path = Path(__file__).resolve().parents[2] / "config" / ".env"
-load_dotenv(dotenv_path=env_path)
-env=os.getenv("ENV","beta").lower()
+load_dotenv()
+env=os.getenv("ENV","beta").lower()    #default value is beta
 
 if env=="beta":
     from config.environments.beta import *

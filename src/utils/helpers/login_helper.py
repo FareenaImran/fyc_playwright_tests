@@ -3,7 +3,6 @@ from src.base.login_page import LoginPage
 
 
 async def login_with_credentials(page, role: str, email: str, password: str):
-    # Navigate to correct login URL
     if role == "learner":
         await page.goto(LEARNER_URL + "/signin")
     elif role == "trainer":

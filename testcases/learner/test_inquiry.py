@@ -2,9 +2,8 @@ import pytest
 from src.pages.learner.course_detail_page import CourseDetailPage
 from src.pages.learner.course_listing import CourseListing
 from src.pages.learner.dashboard_page import DashboardPage
-from src.pages.learner.my_courses.inquired_courses import InquiredCourses
-from src.utils.helpers.common_checks import login_and_verify_dashboard
-from src.utils.helpers.logger import logger
+from src.utils.helpers.common import login_and_verify_dashboard
+from src.utils.helpers.common_checks import  check_element_in_table
 
 
 @pytest.mark.parametrize("role",["learner"])
@@ -28,12 +27,11 @@ async def test_inquiry_by_learner_appears_in_inquired_courses(page,role):
     await course_detail.submit_inquiry_form()
     #Navigate to dashboard
     await home_page.click_on_profile_icon()
-    #Get recent inquiry msg
-    inquiry=InquiredCourses(page)
-    inquiry_msg_in_list=await inquiry.get_recent_inquiry(5)
-    #verify inquiry message sent by learner appears in list on top
-    assert inquiry_msg_sent==inquiry_msg_in_list,(
-        f"Expect inquiry '{inquiry_msg_sent}' ,but found '{inquiry_msg_in_list}'"
-    )
-    logger.info(f"\nInquiry verified successfully! '{inquiry_msg_sent}' appears in table")
-
+    #Navigate to My Courses
+    dashboard = DashboardPage(page)
+    await dashboard.navigate_to_my_courses()
+    #Click on Inquired Courses
+    await page.get_by_text("Inquired Courses").click()
+    #Verify recent inquiry
+    found_inquiry, row_data = await check_element_in_table(page, inquiry_msg_sent, 5, "Inquiries")
+    assert found_inquiry, f"Inquiry {found_inquiry} should be in 'Inquired Courses' but was not found"

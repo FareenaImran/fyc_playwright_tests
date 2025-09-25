@@ -1,9 +1,9 @@
+from src.utils.helpers.csv_reader import get_cred_from_csv
 from src.utils.helpers.login_helper import login_with_credentials
-from src.utils.test_data.csv_reader import get_cred_from_google_sheet
 
 
 async def login_by_name(page,role: str,name):
-    users = get_cred_from_google_sheet(role)
+    users = get_cred_from_csv(role)
     for user in users:
         if user["name"].lower()==name.lower():
             await login_with_credentials(

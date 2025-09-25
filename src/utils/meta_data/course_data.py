@@ -14,15 +14,6 @@ COURSES = [
 ]
 
 
-TP_NAMES = [
-    "Saylani Mass IT", "Aptech", "Karachi AI", "NED University",
-    "Code for Pakistan", "PIAIC", "SMIT", "Arena Multimedia",
-    "Iqra University", "FAST NUCES", "Habib University",
-    "Virtual University", "COMSATS", "IBA", "GIAIC",
-    "Tech Karo", "WomenInTech PK", "Google Developer Group Karachi",
-    "DSA Academy", "MIT Open Learning"
-]
-
 INSTRUCTORS = [
     "Alex Carter", "Priya Sharma", "Michael Thompson", "Sofia Rossi",
     "Daniel Kim", "Fatima Al-Mansoori", "Liam O'Connor", "Elena Petrova",

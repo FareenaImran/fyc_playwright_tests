@@ -1,3 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/src/utils/test_data/users.csv
+.env
+# Python cache
+__pycache__/
+*.pyc

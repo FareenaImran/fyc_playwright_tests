@@ -7,7 +7,8 @@ from src.pages.learner.course_detail_page import CourseDetailPage
 from src.pages.learner.course_listing import CourseListing
 from src.pages.learner.dashboard_page import DashboardPage
 from src.pages.learner.my_courses.inquired_courses import InquiredCourses
-from src.utils.helpers.common_checks import login_and_verify_dashboard, check_ele_in_all_pages
+from src.utils.helpers.common import login_and_verify_dashboard
+from src.utils.helpers.common_checks import  check_ele_in_all_pages, check_element_in_table
 from src.utils.helpers.logger import logger
 from src.utils.helpers.login_by_name import login_by_name
 
@@ -45,28 +46,27 @@ async def test_inquiry_appears_on_all_portals(page):
     # Navigate to dashboard
     base_page = BasePage(page)
     await base_page.click_on_profile_icon()
+    logger.info("\n--------Verifying Inquiry in table---------\n")
+    #Navigate to My Courses
+    dashboard = DashboardPage(page)
+    await dashboard.navigate_to_my_courses()
+    #Navigate to Inquired Courses
+    await page.get_by_text("Inquired Courses").click()
     # Get recent inquiry msg
-    inquiry = InquiredCourses(page)
-    inquiry_msg_in_list = await inquiry.get_recent_inquiry(5)
-    # verify inquiry message sent by learner appears in list on top
-    assert inquiry_msg_sent == inquiry_msg_in_list, (
-        f"Expect inquiry '{inquiry_msg_sent}' ,but found '{inquiry_msg_in_list}'"
-    )
-    logger.info(f"\nInquiry verified successfully! '{inquiry_msg_sent}' appears in Inquiried Courses")
+    found_inquiry,row_data=await check_element_in_table(page, inquiry_msg_sent, 5, "Inquired Courses")
+    assert found_inquiry, f"Inquiry {found_inquiry} should be in 'Inquired Courses' but was not found"
 
     '''
     TP : Verify Recent Inquiry msg
     '''
     await login_by_name(page,"trainer",tp_name)
     #navigate to learner
-    await page.get_by_text("Learners").click()
+    await page.get_by_text("Learners").first.click()
     #Click on Inquiry
     await page.get_by_role("button",name=re.compile("inquiries",re.IGNORECASE)).click()
-    #get recent inquiry
-    inquiry_msg_in_list = await base_page.get_column_text(6)
-    # verify inquiry message sent by learner appears in tp portal
-    assert inquiry_msg_sent == inquiry_msg_in_list, f"Expect inquiry '{inquiry_msg_sent}' ,but found '{inquiry_msg_in_list}'"
-    logger.info(f"\nInquiry verified successfully! '{inquiry_msg_sent}' appears in TP's Inquiry Table")
+    #Verify recent inquiry
+    found_inquiry, row_data = await check_element_in_table(page, inquiry_msg_sent, 6, "Inquiries")
+    assert found_inquiry, f"Inquiry {found_inquiry} should be in 'Inquired Courses' but was not found"
 
     '''
      Admin : Verify Recent Inquiry msg
@@ -82,9 +82,6 @@ async def test_inquiry_appears_on_all_portals(page):
     await learners.view_learner_details(text_row)
     #View Inquiries
     await page.locator("//button[contains(text(),'Inquiries')]").click()
-    inquiry_msg_in_list = await base_page.get_column_text(1)
-    # verify inquiry message sent by learner appears in list on top
-    assert inquiry_msg_sent == inquiry_msg_in_list, (
-        f"Expect inquiry '{inquiry_msg_sent}' ,but found '{inquiry_msg_in_list}'"
-    )
-    logger.info(f"\nInquiry verified successfully! '{inquiry_msg_sent}' appears in Inquiry table")
+    #Verify recent inquiry
+    found_inquiry, row_data = await check_element_in_table(page, inquiry_msg_sent, 1, "Inquiries")
+    assert found_inquiry, f"Inquiry {found_inquiry} should be in 'Inquired Courses' but was not found"

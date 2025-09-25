@@ -1,7 +1,7 @@
 import pytest
 
 from src.pages.learner.dashboard_page import DashboardPage
-from src.utils.helpers.common_checks import  login_and_verify_dashboard
+from src.utils.helpers.common import login_and_verify_dashboard
 from src.utils.helpers.logger import logger
 
 

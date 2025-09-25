@@ -42,15 +42,10 @@ class DashboardPage(BasePage):
         applied_courses=await self.get_applied_courses()
         print(f"\nList of Applied Courses\n{applied_courses}")
         if course_name in applied_courses:
+            print(f"\nFound [{course_name}] in applied courses !! ")
             course_detail=self.page.locator(f"//h3[normalize-space()='{course_name}']/parent::div")
             return await course_detail.inner_text()
         return None
-
-
-
-
-
-
 
     async def navigate_and_open_bookmark_section(self):
         await self.page.locator('p:has-text("Saved Courses") + h3').click()

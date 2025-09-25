@@ -5,7 +5,8 @@ from playwright.async_api import expect
 from src.base.base_page import BasePage
 from src.pages.tp.dashboard.courses.fill_course_steps import FillCourseSteps
 from src.pages.tp.dashboard.courses.fill_offering_steps import FillOfferingSteps
-from src.utils.helpers.common_checks import check_element_in_table, login_and_verify_dashboard, navigate_to_courses
+from src.utils.helpers.common import navigate_to_courses, login_and_verify_dashboard
+from src.utils.helpers.common_checks import check_element_in_table
 
 
 class CoursePage(BasePage):

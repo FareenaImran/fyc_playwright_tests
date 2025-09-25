@@ -1,9 +1,7 @@
 import re
-
 import pytest
-
 from src.base.base_page import BasePage
-from src.utils.generators.course_data_generator import select_random_dropdown_option, get_random_data
+from src.utils.generators.course_data_generator import get_random_data
 
 class CourseDetailPage(BasePage):
 
@@ -49,10 +47,12 @@ class CourseDetailPage(BasePage):
 
     async def fill_inquiry_form(self):
         contact_method=self.page.locator("[name='contactMethod']")
-        await select_random_dropdown_option(self.page,contact_method)
+        await contact_method.select_option(value="WhatsApp")
+        # await select_random_dropdown_option(self.page,contact_method)
 
-        contact_method = self.page.locator("[name='inquiryType']")
-        await select_random_dropdown_option(self.page, contact_method)
+        inquiry_type = self.page.locator("[name='inquiryType']")
+        await inquiry_type.select_option(value="Pricing & Payment Options")
+        # await select_random_dropdown_option(self.page, contact_method)
 
         msg_locator=self.page.locator("textarea[name='message']")
         await msg_locator.fill(get_random_data())

@@ -1,6 +1,6 @@
 import pytest
 from src.pages.tp.dashboard.courses.course_page import CoursePage
-from src.utils.helpers.common_checks import login_and_verify_dashboard, navigate_to_courses
+from src.utils.helpers.common import navigate_to_courses, login_and_verify_dashboard
 
 
 @pytest.mark.parametrize("role",["trainer"])

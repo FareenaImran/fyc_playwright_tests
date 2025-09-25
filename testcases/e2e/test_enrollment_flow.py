@@ -5,7 +5,8 @@ from src.pages.learner.course_detail_page import CourseDetailPage
 from src.pages.learner.course_listing import CourseListing
 from src.pages.learner.dashboard_page import DashboardPage
 from src.pages.tp.dashboard.dashboard_page import TPDashboardPage
-from src.utils.helpers.common_checks import login_and_verify_dashboard, check_element_in_table, check_ele_in_all_pages
+from src.utils.helpers.common import login_and_verify_dashboard
+from src.utils.helpers.common_checks import  check_element_in_table, check_ele_in_all_pages
 from src.utils.helpers.login_by_name import login_by_name
 
 '''
@@ -44,9 +45,7 @@ async def test_enrollment_appears_on_all_portal(page):
             break
     #Verify Enrollment
     course_detail=await dashboard.verify_enrollment_appears_in_applied_courses(course_name)
-    if not course_detail:
-        raise Exception("Did not get applied course detail")
-    print(f"\nVerified !! Course exits in applied courses, here is the course details\n\n'{course_detail}'")
+    assert course_detail,"Did not get applied course detail"
 
     """
     1. Login to TP by name

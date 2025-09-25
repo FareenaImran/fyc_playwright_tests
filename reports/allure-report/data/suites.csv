@@ -1,22 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","10139","test_login_with_valid_credentials[learner]","testcases.authentication","Mon Sep 15 15:59:44 PKT 2025","passed","Mon Sep 15 15:59:54 PKT 2025","","test_login","",""
-"","4255","test_login_with_invalid_email[trainer]","testcases.authentication","Mon Sep 15 16:00:32 PKT 2025","passed","Mon Sep 15 16:00:37 PKT 2025","","test_login","",""
-"
-    LEARNER : Send and Verify Inquiry msg
-    ","65994","test_inquiry_appears_on_all_portals","testcases.e2e","Mon Sep 15 16:01:53 PKT 2025","passed","Mon Sep 15 16:02:59 PKT 2025","","test_inquiry_flow","",""
-"","18010","test_change_course_status_from_under_review_to_approved[admin]","testcases.admin.courses","Mon Sep 15 15:59:22 PKT 2025","passed","Mon Sep 15 15:59:40 PKT 2025","","test_change_course_status","",""
-"","5856","test_login_with_invalid_email[learner]","testcases.authentication","Mon Sep 15 16:00:23 PKT 2025","passed","Mon Sep 15 16:00:29 PKT 2025","","test_login","",""
-"","117360","test_new_course_with_offering_appears_in_under_review_after_submission[trainer]","testcases.training_partner.courses","Mon Sep 15 16:05:21 PKT 2025","passed","Mon Sep 15 16:07:18 PKT 2025","","test_add_new_course","",""
-"","29222","test_inquiry_by_learner_appears_in_inquired_courses[learner]","testcases.learner","Mon Sep 15 16:03:55 PKT 2025","passed","Mon Sep 15 16:04:24 PKT 2025","","test_inquiry","",""
-"","10193","test_login_with_valid_credentials[trainer]","testcases.authentication","Mon Sep 15 15:59:58 PKT 2025","passed","Mon Sep 15 16:00:08 PKT 2025","","test_login","",""
-"","5909","test_login_with_invalid_email[admin]","testcases.authentication","Mon Sep 15 16:00:41 PKT 2025","passed","Mon Sep 15 16:00:46 PKT 2025","","test_login","",""
-"","27607","test_course_appears_in_bookmark_section_after_saving[learner]","testcases.learner","Mon Sep 15 16:03:22 PKT 2025","passed","Mon Sep 15 16:03:50 PKT 2025","","test_bookmarked_courses","",""
-"","7693","test_login_with_valid_credentials[admin]","testcases.authentication","Mon Sep 15 16:00:12 PKT 2025","passed","Mon Sep 15 16:00:20 PKT 2025","","test_login","",""
-"","98810","test_new_offering_appears_in_existing_course[trainer]","testcases.training_partner.courses","Mon Sep 15 16:07:23 PKT 2025","passed","Mon Sep 15 16:09:02 PKT 2025","","test_add_new_offering","",""
-"","43723","test_newly_added_course_appears_in_inprogress_on_save_and_exit[trainer]","testcases.training_partner.courses","Mon Sep 15 16:04:32 PKT 2025","passed","Mon Sep 15 16:05:16 PKT 2025","","test_add_new_course","",""
-"
-    1. Login To Learner
-    2. Enroll to any course
-    3. Verify enrollment
-    ","59778","test_enrollment_appears_on_all_portal","testcases.e2e","Mon Sep 15 16:00:50 PKT 2025","passed","Mon Sep 15 16:01:50 PKT 2025","","test_enrollment_flow","",""
-"","16640","test_learner_bookmarked_courses_count[learner]","testcases.learner","Mon Sep 15 16:03:02 PKT 2025","passed","Mon Sep 15 16:03:19 PKT 2025","","test_bookmarked_courses","",""
+"","35447","test_tp_status_count","testcases.admin.training_partners","Thu Sep 25 13:41:48 PKT 2025","passed","Thu Sep 25 13:42:23 PKT 2025","","test_status_count","",""
