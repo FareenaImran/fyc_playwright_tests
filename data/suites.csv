@@ -1,22 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","117360","test_new_course_with_offering_appears_in_under_review_after_submission[trainer]","testcases.training_partner.courses","Mon Sep 15 11:05:21 UTC 2025","passed","Mon Sep 15 11:07:18 UTC 2025","","test_add_new_course","",""
-"
-    1. Login To Learner
-    2. Enroll to any course
-    3. Verify enrollment
-    ","59778","test_enrollment_appears_on_all_portal","testcases.e2e","Mon Sep 15 11:00:50 UTC 2025","passed","Mon Sep 15 11:01:50 UTC 2025","","test_enrollment_flow","",""
-"","98810","test_new_offering_appears_in_existing_course[trainer]","testcases.training_partner.courses","Mon Sep 15 11:07:23 UTC 2025","passed","Mon Sep 15 11:09:02 UTC 2025","","test_add_new_offering","",""
-"","10139","test_login_with_valid_credentials[learner]","testcases.authentication","Mon Sep 15 10:59:44 UTC 2025","passed","Mon Sep 15 10:59:54 UTC 2025","","test_login","",""
-"","29222","test_inquiry_by_learner_appears_in_inquired_courses[learner]","testcases.learner","Mon Sep 15 11:03:55 UTC 2025","passed","Mon Sep 15 11:04:24 UTC 2025","","test_inquiry","",""
-"","27607","test_course_appears_in_bookmark_section_after_saving[learner]","testcases.learner","Mon Sep 15 11:03:22 UTC 2025","passed","Mon Sep 15 11:03:50 UTC 2025","","test_bookmarked_courses","",""
-"","16640","test_learner_bookmarked_courses_count[learner]","testcases.learner","Mon Sep 15 11:03:02 UTC 2025","passed","Mon Sep 15 11:03:19 UTC 2025","","test_bookmarked_courses","",""
-"","18010","test_change_course_status_from_under_review_to_approved[admin]","testcases.admin.courses","Mon Sep 15 10:59:22 UTC 2025","passed","Mon Sep 15 10:59:40 UTC 2025","","test_change_course_status","",""
-"","7693","test_login_with_valid_credentials[admin]","testcases.authentication","Mon Sep 15 11:00:12 UTC 2025","passed","Mon Sep 15 11:00:20 UTC 2025","","test_login","",""
-"","43723","test_newly_added_course_appears_in_inprogress_on_save_and_exit[trainer]","testcases.training_partner.courses","Mon Sep 15 11:04:32 UTC 2025","passed","Mon Sep 15 11:05:16 UTC 2025","","test_add_new_course","",""
-"","4255","test_login_with_invalid_email[trainer]","testcases.authentication","Mon Sep 15 11:00:32 UTC 2025","passed","Mon Sep 15 11:00:37 UTC 2025","","test_login","",""
-"
-    LEARNER : Send and Verify Inquiry msg
-    ","65994","test_inquiry_appears_on_all_portals","testcases.e2e","Mon Sep 15 11:01:53 UTC 2025","passed","Mon Sep 15 11:02:59 UTC 2025","","test_inquiry_flow","",""
-"","5909","test_login_with_invalid_email[admin]","testcases.authentication","Mon Sep 15 11:00:41 UTC 2025","passed","Mon Sep 15 11:00:46 UTC 2025","","test_login","",""
-"","10193","test_login_with_valid_credentials[trainer]","testcases.authentication","Mon Sep 15 10:59:58 UTC 2025","passed","Mon Sep 15 11:00:08 UTC 2025","","test_login","",""
-"","5856","test_login_with_invalid_email[learner]","testcases.authentication","Mon Sep 15 11:00:23 UTC 2025","passed","Mon Sep 15 11:00:29 UTC 2025","","test_login","",""
+"","35447","test_tp_status_count","testcases.admin.training_partners","Thu Sep 25 08:41:48 UTC 2025","passed","Thu Sep 25 08:42:23 UTC 2025","","test_status_count","",""
