@@ -1,7 +1,7 @@
 from src.base.base_page import BasePage
 from src.utils.generators.course_data_generator import get_random_tp_name, get_random_data, get_random_image
 from src.utils.helpers.common import rs_dropdown
-from src.utils.helpers.common_checks import check_is_btn_enabled
+from src.utils.helpers.common_checks import check_is_btn_enabled, check_success_message
 
 
 class AddNewTP(BasePage):
@@ -18,7 +18,7 @@ class AddNewTP(BasePage):
     async def fill_1st_step(self):
         #Enter Institute name
         tp_name_ele=self.page.locator("#instituteName")
-        tp_name=await tp_name_ele.fill(get_random_tp_name())
+        tp_name=await tp_name_ele.fill(get_random_tp_name() + " " + get_random_data())
         tp=await tp_name_ele.input_value()
         #Enter About the Institute
         await self.page.locator("//div[@class='ql-editor ql-blank']").fill("Hello " + tp + " " + get_random_data())
@@ -35,7 +35,8 @@ class AddNewTP(BasePage):
         #Click next
         next_btn=self.page.get_by_role("button" ,name="Next")
         await check_is_btn_enabled(self.page,next_btn)
-
+        #Success msg
+        print(f"\n{await check_success_message(self.page)}")
         return tp
 
     #Add 2nd Step
@@ -60,6 +61,8 @@ class AddNewTP(BasePage):
         # Click next
         next_btn = self.page.get_by_role("button", name="Next")
         await check_is_btn_enabled(self.page, next_btn)
+        # Success msg
+        print(f"\n{await check_success_message(self.page)}")
 
     async def fill_3rd_step(self):
         #Cover Image
@@ -70,3 +73,5 @@ class AddNewTP(BasePage):
         # Click submit
         submit_btn = self.page.get_by_role("button", name="Submit")
         await check_is_btn_enabled(self.page, submit_btn)
+        # Success msg
+        print(f"\n{await check_success_message(self.page)}")

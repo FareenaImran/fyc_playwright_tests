@@ -1,2 +1,5 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Add new TP by Admin","27940","test_tp_added_by_admin_appears_with_claim_option","testcases.learner","Thu Sep 25 20:41:57 PKT 2025","passed","Thu Sep 25 20:42:25 PKT 2025","","test_claim_profile","",""
+"
+    Admin Portal
+    Add new TP by Admin
+    ","51759","test_claim_profile_moves_tp_to_claimed_section","testcases.e2e","Fri Sep 26 20:12:51 PKT 2025","passed","Fri Sep 26 20:13:43 PKT 2025","","test_claim_profile","",""

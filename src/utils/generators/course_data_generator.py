@@ -1,7 +1,7 @@
 import string
 import random
 from pathlib import Path
-from src.utils.meta_data.course_data import COURSES, INSTRUCTORS
+from src.utils.meta_data.course_data import COURSES, NAMES
 from src.utils.meta_data.tp_data import TP_NAMES
 
 
@@ -10,8 +10,8 @@ def get_random_digits():
     return f"{random.choices(string.digits,k=5)}"
 
 #Instructor Name
-def get_random_instructor_name():
-    return f"{random.choice(INSTRUCTORS)}"
+def get_random_name():
+    return f"{random.choice(NAMES)}"
 
 #course name
 def get_random_course_name():
@@ -24,8 +24,8 @@ def get_random_tp_name():
 
 #field text
 def get_random_data():
-    suffix = "".join(random.choices(string.ascii_lowercase +string.digits, k=10))
-    return f"{suffix}"
+    data = "".join(random.choices(string.ascii_lowercase +string.digits, k=10))
+    return f"{data}"
 
 #Image
 def get_random_image():

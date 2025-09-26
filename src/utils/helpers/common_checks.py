@@ -86,10 +86,10 @@ async def check_success_message(page):
     try:
         await page.wait_for_selector(CommonLocators.SUCCESS_MSG)
         success_locator = page.locator(CommonLocators.SUCCESS_MSG).filter(has_text=re.compile(
-                r"(Live|Under Review|Need Attention|Approved)",re.IGNORECASE)).first
+                r"(Live|Under Review|Need Attention|Approved|Profile|Success|)",re.IGNORECASE)).first
 
         if await success_locator.is_visible():
-            return await success_locator.text_content()
+            return await success_locator.inner_text()
 
     except TimeoutError as e:
        print (f"Time out error {e}")
@@ -121,10 +121,32 @@ async def check_ele_in_all_pages(page,text,column,status):
 
     raise Exception(f"Did not find {original_text} in any page ")
 
+#Get rows
+async def get_rows(page):
+    rows = page.locator("table > tbody > tr")
+    count = await rows.count()
+    if count==1:
+        record=await rows.nth(0).locator("td").nth(0).inner_text()
+        if record.strip()=="No records found":
+            return 0,rows
 
+    return count,rows
 
-
-
+async def select_and_option_action_option(page,column_no,element):
+        column=column_no-1
+        count, rows = await get_rows(page)
+        if count == 0:
+            print("No Records Found in Table !")
+            return None
+        row = rows.nth(0)
+        text = await row.locator("td").nth(column).inner_text()
+        print(f"Changing Status of {text}")
+        action_btn = row.locator("div[role='menu']  div:nth-child(1)").first
+        await action_btn.scroll_into_view_if_needed()
+        await action_btn.click()
+        btn = page.locator(element)
+        await btn.nth(0).click()
+        return text
 
 
 

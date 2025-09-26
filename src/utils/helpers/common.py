@@ -1,8 +1,7 @@
 import re
-from asyncio import wait_for
 from datetime import date, timedelta
 from playwright.async_api import expect
-from src.utils.helpers.common_checks import check_and_close_page_modal, check_login_error_message
+from src.utils.helpers.common_checks import check_and_close_page_modal, check_login_error_message, check_success_message
 from src.utils.helpers.csv_reader import get_untried_emails
 from src.utils.helpers.logger import logger
 from src.utils.helpers.login_helper import login_with_credentials
@@ -29,7 +28,8 @@ async def login_and_verify_dashboard(page,role:str):
             continue
         await expect(page).to_have_url(re.compile(r"/dashboard$"))
         assert "dashboard" in page.url or "profile" in await page.content()
-        logger.info(f"\nLogin successful for role: {role} - {user['email']}")
+        print(await check_success_message(page))
+        # logger.info(f"\nLogin successful for role: {role} - {user['email']}")
         logger.info(f"\nNavigated to : {page.url}")
         await check_and_close_page_modal(page)
         return user
@@ -71,12 +71,11 @@ async def pick_date(page, locator, days_from_today=0):
     return target_date
 
 #Get card by specific locator [name, book,mark]
-async def find_card_by_element(page,elements,element):
+async def find_and_open_card_by_element(page,elements,element):
     first_ele=elements.first
     await first_ele.wait_for(state="visible")
     page_no = 1
     while True:
-        print(f"Finding {element} in Page # {page_no}....")
         await page.wait_for_load_state('domcontentloaded')
         all_elements = await elements.all()
 

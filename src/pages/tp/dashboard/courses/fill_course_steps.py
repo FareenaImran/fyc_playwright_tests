@@ -1,7 +1,7 @@
 from src.base.base_page import BasePage
 from src.utils.generators.course_data_generator import get_random_course_name, get_random_data, get_random_image, fill_same_fields
 from src.utils.helpers.common import rs_dropdown
-from src.utils.helpers.common_checks import check_is_btn_enabled
+from src.utils.helpers.common_checks import check_is_btn_enabled, check_success_message
 
 
 class FillCourseSteps(BasePage):
@@ -32,10 +32,12 @@ class FillCourseSteps(BasePage):
 
         await self.page.locator('input[type="file"]').set_input_files(get_random_image())
 
-
         #Next  Button
         next_btn = self.page.get_by_role("button", name="Next")
         await check_is_btn_enabled(self, next_btn)
+
+        # Success msg
+        print(f"\n{await check_success_message(self.page)}")
 
         print("\nNext Step...")
         return course_name.strip()
@@ -77,6 +79,9 @@ class FillCourseSteps(BasePage):
 
         next_btn = self.page.get_by_role("button", name="Next")
         await check_is_btn_enabled(self,next_btn)
+
+        # Success msg
+        print(f"\n{await check_success_message(self.page)}")
 
         print("\nNext Step...")
 

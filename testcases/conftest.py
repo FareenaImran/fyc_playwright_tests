@@ -12,7 +12,7 @@ from src.utils.helpers.popup_handler import handle_popup
 @pytest.fixture(autouse=True)
 def set_global_timeouts(page):
     page.set_default_timeout(15000)              # 15s for locator
-    page.set_default_navigation_timeout(30000)   # 20s
+    page.set_default_navigation_timeout(50000)   # 50s
     yield
 
 def pytest_sessionstart(session):

@@ -13,6 +13,7 @@ async def login_with_credentials(page, role: str, email: str, password: str):
         raise ValueError(f"Unsupported role: {role}")
 
     await page.wait_for_load_state("domcontentloaded")
+    await page.wait_for_load_state("networkidle")
 
     login_page = LoginPage(page)
     return await login_page.login(email, password)

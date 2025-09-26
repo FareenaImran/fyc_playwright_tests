@@ -11,7 +11,7 @@ class CourseDetailPage(BasePage):
         await self.page.get_by_role("button",name="Yes, approve. I have verified details").click()
         is_approved=await check_success_message(self.page)
         if not is_approved:
-            raise  Exception("Course did not approved successfully")
+            raise  Exception("Failed to change status")
         await self.page.go_back()
         await expect(self.page).to_have_url(re.compile(r".*/portal/courses$"))
 

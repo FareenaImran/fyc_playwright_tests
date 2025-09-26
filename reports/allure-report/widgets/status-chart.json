@@ -1,1 +1,1 @@
-[{"uid":"dabf2135e0e77934","name":"test_tp_added_by_admin_appears_with_claim_option","time":{"start":1758814917249,"stop":1758814945189,"duration":27940},"status":"passed","severity":"normal"}]
+[{"uid":"c973a937d55ee765","name":"test_claim_profile_moves_tp_to_claimed_section","time":{"start":1758899571588,"stop":1758899623347,"duration":51759},"status":"passed","severity":"normal"}]
