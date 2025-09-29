@@ -6,5 +6,15 @@ Navigated to : https://beta-admin.findyourcourses.org/portal/dashboard
 [32mINFO    [0m TestLogger:tp_fixtures.py:19 Navigated to : https://beta-admin.findyourcourses.org/portal/training-partners/add-new-tp
 [32mINFO    [0m TestLogger:tp_fixtures.py:20 
 -------Adding New TP--------
-[32mINFO    [0m TestLogger:test_claim_profile.py:32 
-Tp Added by Admin: MIT Open Learning 9f3vnbx4pt
+
+[32mINFO    [0m TestLogger:add_new_tp_steps.py:40 
+Success
+Basic info added successfully
+[32mINFO    [0m TestLogger:add_new_tp_steps.py:66 
+Success
+Profile details updated successfully
+[32mINFO    [0m TestLogger:add_new_tp_steps.py:78 
+Success
+Profile pictures updated successfully
+[32mINFO    [0m TestLogger:test_add_new_tp.py:10 
+-------Verifying TP Name in table--------
