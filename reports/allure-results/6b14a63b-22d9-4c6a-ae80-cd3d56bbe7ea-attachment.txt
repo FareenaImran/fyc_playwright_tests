@@ -1,0 +1,11 @@
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:which-who@gnjvogqr.mailosaur.net
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:common.py:27 Error  :Account Not Activated
+Your account is not activated. Please contact support.
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:soft-it@gnjvogqr.mailosaur.net
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:common.py:33 
+Navigated to : https://beta.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:test_bookmarked_courses.py:18 Verified course count successfully!

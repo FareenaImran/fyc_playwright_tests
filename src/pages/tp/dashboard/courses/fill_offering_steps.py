@@ -60,8 +60,8 @@ class FillOfferingSteps(BasePage):
             start_date = await pick_date(self.page, start_date_ele, 7)
             print(f"Start Date: {start_date.strftime('%B %d, %Y')}")
 
-            # Select end date (after start date)
-            end_date_ele = self.page.locator('button[name="courseEndDate"]')
+            # Select end date
+            end_date_ele = self.page.locator('[name="courseEndDate"]')
             end_date = await pick_date(self.page, end_date_ele, 30)  # 30 days from today
             print(f"End Date: {end_date.strftime('%B %d, %Y')}")
 

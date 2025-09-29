@@ -2,6 +2,7 @@ from src.base.base_page import BasePage
 from src.utils.generators.course_data_generator import get_random_tp_name, get_random_data, get_random_image
 from src.utils.helpers.common import rs_dropdown
 from src.utils.helpers.common_checks import check_is_btn_enabled, check_success_message
+from src.utils.helpers.logger import logger
 
 
 class AddNewTP(BasePage):
@@ -36,7 +37,7 @@ class AddNewTP(BasePage):
         next_btn=self.page.get_by_role("button" ,name="Next")
         await check_is_btn_enabled(self.page,next_btn)
         #Success msg
-        print(f"\n{await check_success_message(self.page)}")
+        logger.info(f"\n{await check_success_message(self.page)}")
         return tp
 
     #Add 2nd Step
@@ -62,7 +63,7 @@ class AddNewTP(BasePage):
         next_btn = self.page.get_by_role("button", name="Next")
         await check_is_btn_enabled(self.page, next_btn)
         # Success msg
-        print(f"\n{await check_success_message(self.page)}")
+        logger.info(f"\n{await check_success_message(self.page)}")
 
     async def fill_3rd_step(self):
         #Cover Image
@@ -74,4 +75,4 @@ class AddNewTP(BasePage):
         submit_btn = self.page.get_by_role("button", name="Submit")
         await check_is_btn_enabled(self.page, submit_btn)
         # Success msg
-        print(f"\n{await check_success_message(self.page)}")
+        logger.info(f"\n{await check_success_message(self.page)}")

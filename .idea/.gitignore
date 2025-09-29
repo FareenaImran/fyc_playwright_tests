@@ -2,6 +2,7 @@
 /shelf/
 /workspace.xml
 src/utils/test_data/users.csv
+src/utils/storage/used_claimed_emails.csv
 .env/
 
 # Python cache

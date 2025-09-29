@@ -1,5 +1,24 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
 "
-    Admin Portal
-    Add new TP by Admin
-    ","51759","test_claim_profile_moves_tp_to_claimed_section","testcases.e2e","Fri Sep 26 20:12:51 PKT 2025","passed","Fri Sep 26 20:13:43 PKT 2025","","test_claim_profile","",""
+    LEARNER : Send and Verify Inquiry msg
+    ","80955","test_inquiry_appears_on_all_portals","testcases.e2e","Mon Sep 29 13:33:44 PKT 2025","passed","Mon Sep 29 13:35:05 PKT 2025","","test_inquiry_flow","",""
+"","7053","test_login_with_valid_credentials[admin]","testcases.authentication","Mon Sep 29 13:29:15 PKT 2025","passed","Mon Sep 29 13:29:22 PKT 2025","","test_login","",""
+"","32301","test_tp_added_by_admin_appears_with_claim_option","testcases.e2e","Mon Sep 29 13:30:30 PKT 2025","passed","Mon Sep 29 13:31:02 PKT 2025","","test_claim_profile","",""
+"","16040","test_change_course_status_from_under_review_to_approved[admin]","testcases.admin.courses","Mon Sep 29 13:25:49 PKT 2025","passed","Mon Sep 29 13:26:05 PKT 2025","","test_change_course_status","",""
+"
+    Test End to End Enrollment Flow on all portal
+    ","48100","test_enrollment_appears_on_all_portal","testcases.e2e","Mon Sep 29 13:32:53 PKT 2025","passed","Mon Sep 29 13:33:41 PKT 2025","","test_enrollment_flow","",""
+"","20308","test_course_appears_in_bookmark_section_after_saving[learner]","testcases.learner","Mon Sep 29 13:35:50 PKT 2025","passed","Mon Sep 29 13:36:10 PKT 2025","","test_bookmarked_courses","",""
+"","51230","test_new_offering_appears_in_existing_course[trainer]","testcases.training_partner.courses","Mon Sep 29 13:39:18 PKT 2025","passed","Mon Sep 29 13:40:09 PKT 2025","","test_add_new_offering","",""
+"","8581","test_login_with_valid_credentials[trainer]","testcases.authentication","Mon Sep 29 13:29:01 PKT 2025","passed","Mon Sep 29 13:29:10 PKT 2025","","test_login","",""
+"","11261","test_login_with_valid_credentials[learner]","testcases.authentication","Mon Sep 29 13:28:43 PKT 2025","passed","Mon Sep 29 13:28:55 PKT 2025","","test_login","",""
+"","53072","test_inquiry_by_learner_appears_in_inquired_courses[learner]","testcases.learner","Mon Sep 29 13:36:16 PKT 2025","passed","Mon Sep 29 13:37:09 PKT 2025","","test_inquiry","",""
+"","74009","test_new_course_with_offering_appears_in_under_review_after_submission[trainer]","testcases.training_partner.courses","Mon Sep 29 13:38:01 PKT 2025","passed","Mon Sep 29 13:39:15 PKT 2025","","test_add_new_course","",""
+"","45683","test_newly_added_course_appears_in_inprogress_on_save_and_exit[trainer]","testcases.training_partner.courses","Mon Sep 29 13:37:12 PKT 2025","passed","Mon Sep 29 13:37:58 PKT 2025","","test_add_new_course","",""
+"Verify that submitting claim profile form moves TP to claimed accounts section","55926","test_claim_profile_moves_tp_to_claimed_section","testcases.e2e","Mon Sep 29 13:31:53 PKT 2025","passed","Mon Sep 29 13:32:49 PKT 2025","","test_claim_profile","",""
+"","5462","test_login_with_invalid_email[admin]","testcases.authentication","Mon Sep 29 13:29:44 PKT 2025","passed","Mon Sep 29 13:29:50 PKT 2025","","test_login","",""
+"","38104","test_learner_bookmarked_courses_count[learner]","testcases.learner","Mon Sep 29 13:35:08 PKT 2025","passed","Mon Sep 29 13:35:46 PKT 2025","","test_bookmarked_courses","",""
+"","4865","test_login_with_invalid_email[learner]","testcases.authentication","Mon Sep 29 13:29:26 PKT 2025","passed","Mon Sep 29 13:29:31 PKT 2025","","test_login","",""
+"","41719","test_tp_status_count","testcases.admin.training_partners","Mon Sep 29 13:27:27 PKT 2025","passed","Mon Sep 29 13:28:09 PKT 2025","","test_status_count","",""
+"Add New TP By Admin","3100","test_add_new_tp","testcases.admin.training_partners.add_new_tp","Mon Sep 29 13:26:49 PKT 2025","passed","Mon Sep 29 13:26:53 PKT 2025","","test_add_new_tp","",""
+"","4657","test_login_with_invalid_email[trainer]","testcases.authentication","Mon Sep 29 13:29:35 PKT 2025","passed","Mon Sep 29 13:29:40 PKT 2025","","test_login","",""

@@ -36,9 +36,6 @@ class FillCourseSteps(BasePage):
         next_btn = self.page.get_by_role("button", name="Next")
         await check_is_btn_enabled(self, next_btn)
 
-        # Success msg
-        print(f"\n{await check_success_message(self.page)}")
-
         print("\nNext Step...")
         return course_name.strip()
 
@@ -79,9 +76,6 @@ class FillCourseSteps(BasePage):
 
         next_btn = self.page.get_by_role("button", name="Next")
         await check_is_btn_enabled(self,next_btn)
-
-        # Success msg
-        print(f"\n{await check_success_message(self.page)}")
 
         print("\nNext Step...")
 

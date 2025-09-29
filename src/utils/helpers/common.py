@@ -34,6 +34,18 @@ async def login_and_verify_dashboard(page,role:str):
         await check_and_close_page_modal(page)
         return user
 
+
+#open action menu and select option
+async def select_menu_option(page,text,option):
+    #open menu
+    action_btn = page.locator(f"tr:has-text('{text}') td:last-child button")
+    await action_btn.click()
+
+    #Select option
+    menu_option = page.locator(f"div[role='menu']  div:nth-child({option})")
+    await menu_option.wait_for(state="visible")
+    await menu_option.click()
+
 #Navigate to Courses
 async def navigate_to_courses(page):
     await check_and_close_page_modal(page)
@@ -67,7 +79,7 @@ async def pick_date(page, locator, days_from_today=0):
         current_month = await calendar.locator('[aria-live="polite"]').text_content()
 
     # Click the day within this specific calendar
-    await calendar.locator(f'button:has-text("{target_date.day}")').first.click()
+    await calendar.locator(f'button:has-text("{target_date.day}"):not([disabled])').first.click()
     return target_date
 
 #Get card by specific locator [name, book,mark]

@@ -1,0 +1,5 @@
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
+Entered Email:fyctest5401+55@gmail.com
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:18 Clicked On Login Button
+[32mINFO    [0m TestLogger:common.py:33 
+Navigated to : https://beta-tp.findyourcourses.org/portal/dashboard

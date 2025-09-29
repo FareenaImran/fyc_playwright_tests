@@ -9,11 +9,13 @@ from src.utils.helpers.common import login_and_verify_dashboard
 from src.utils.helpers.common_checks import  check_element_in_table, check_ele_in_all_pages
 from src.utils.helpers.login_by_name import login_by_name
 
-'''
-Test End to End Enrollment Flow on all portal
-'''
+
 @pytest.mark.e2e
 async def test_enrollment_appears_on_all_portal(page):
+    '''
+    Test End to End Enrollment Flow on all portal
+    '''
+
     """
     1. Login To Learner
     2. Enroll to any course

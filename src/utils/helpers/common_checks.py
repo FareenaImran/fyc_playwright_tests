@@ -132,7 +132,7 @@ async def get_rows(page):
 
     return count,rows
 
-async def select_and_option_action_option(page,column_no,element):
+async def select_and_open_action_option(page,column_no,element):
         column=column_no-1
         count, rows = await get_rows(page)
         if count == 0:
