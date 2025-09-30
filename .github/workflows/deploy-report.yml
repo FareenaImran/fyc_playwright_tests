@@ -3,7 +3,7 @@ name: Deploy Allure Report
 on:
   push:
     branches:
-      - main   # or master, depending on your default branch
+      - main   # your default branch
   workflow_dispatch:   # allows manual trigger
 
 jobs:
@@ -19,15 +19,17 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install -g allure-commandline --save-dev
+      - name: Install Allure CLI
+        run: npm install -g allure-commandline
 
       - name: Generate Allure Report
         run: |
+          mkdir -p reports/allure-report
           allure generate reports/allure-results -o reports/allure-report --clean
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: reports/allure-report
