@@ -1,0 +1,20 @@
+[32mINFO    [0m TestLogger:login_page.py:10 
+Navigated to https://beta-admin.findyourcourses.org/
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:13 
+Entered Email:sheraz@newtales.co
+[32mINFO    [0m TestLogger:login_fixtures.py:26 
+Navigated to : https://beta-admin.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:tp_fixtures.py:18 Navigated to : https://beta-admin.findyourcourses.org/portal/training-partners/add-new-tp
+[32mINFO    [0m TestLogger:tp_fixtures.py:19 
+-------Adding New TP--------
+[32mINFO    [0m TestLogger:add_new_tp_steps.py:47 
+Success
+Basic info added successfully
+[32mINFO    [0m TestLogger:add_new_tp_steps.py:76 
+Success
+Profile details updated successfully
+[32mINFO    [0m TestLogger:add_new_tp_steps.py:21 
+Success
+Profile pictures updated successfully
+[32mINFO    [0m TestLogger:course_detail_page.py:78 
+Navigated to https://beta.findyourcourses.org/training-partner

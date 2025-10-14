@@ -1,25 +1,32 @@
+import re
+import pytest
 import os
 import shutil
 import webbrowser
-import pytest
 import platform
 import subprocess
 from playwright.async_api import async_playwright
-from src.utils.helpers.popup_handler import handle_popup
+
+pytest_plugins = [
+    "testcases.fixtures.login_fixtures",
+    "testcases.fixtures.tp_fixtures"
+]
 
 
 #Global timeouts for every test
 @pytest.fixture(autouse=True)
 def set_global_timeouts(page):
-    page.set_default_timeout(30000)              # 15s for locator
-    page.set_default_navigation_timeout(50000)   # 50s
+    page.set_default_timeout(30000)              # 30s for locator
+    page.set_default_navigation_timeout(70000)   # 70s
     yield
 
+#Session Start
 def pytest_sessionstart(session):
     results_dir = "reports/allure-results"
     if os.path.exists(results_dir):
         shutil.rmtree(results_dir)
     os.makedirs(results_dir, exist_ok=True)  # Ensure directory exists
+
 
 @pytest.fixture(scope="function")
 async def page():
@@ -31,19 +38,17 @@ async def page():
             args=["--start-maximized"]
         )
         context = await browser.new_context(no_viewport=True)
-        context.on("page", lambda p: p.on("console", lambda msg: None))
+        # context.on("page", lambda p: p.on("console", lambda msg: None))
 
         # context.on("page", lambda p: p.on("console", lambda msg: print(msg.text)))
         page = await context.new_page()
 
-        # Register global popup handler
-        page.on("popup", handle_popup)
+        # # Register global popup handler
+        # page.on("popup", handle_popup)
 
         yield page
         await context.close()
         await browser.close()
-
-
 
 def pytest_sessionfinish(session, exitstatus):
     print("\nGenerating Allure report...")

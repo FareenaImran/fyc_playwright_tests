@@ -1,11 +1,6 @@
 import re
 from datetime import date, timedelta
 from playwright.async_api import expect
-from src.utils.helpers.common_checks import check_and_close_page_modal, check_login_error_message, check_success_message
-from src.utils.helpers.csv_reader import get_untried_emails
-from src.utils.helpers.logger import logger
-from src.utils.helpers.login_helper import login_with_credentials
-
 
 #Select dropdown option from React Select
 async def rs_dropdown(page,locator_value,options):
@@ -14,47 +9,27 @@ async def rs_dropdown(page,locator_value,options):
         await page.fill(locator_value,option)
         await page.keyboard.press("Enter")
 
-##Login
-async def login_and_verify_dashboard(page,role:str):
-    tried_emails = set()
-    while True:
-        user = get_untried_emails(role, tried_emails)
-        user_email = user["email"]
-        tried_emails.add(user_email)
-        await login_with_credentials(page, role, user_email, user["password"])
-        err_msg = await check_login_error_message(page)
-        if err_msg:
-            logger.info(f"Error  :{err_msg}")
-            continue
-        await expect(page).to_have_url(re.compile(r"/dashboard$"))
-        assert "dashboard" in page.url or "profile" in await page.content()
-        print(await check_success_message(page))
-        # logger.info(f"\nLogin successful for role: {role} - {user['email']}")
-        logger.info(f"\nNavigated to : {page.url}")
-        await check_and_close_page_modal(page)
-        return user
-
 
 #open action menu and select option
-async def select_menu_option(page,text,option):
+async def select_menu_option(page,option,text):
     #open menu
-    action_btn = page.locator(f"tr:has-text('{text}') td:last-child button")
+
+    action_btn = page.locator(f"tr:has-text('{text}') td:last-child button").first
+    await action_btn.scroll_into_view_if_needed()
     await action_btn.click()
 
     #Select option
-    menu_option = page.locator(f"div[role='menu']  div:nth-child({option})")
+    menu_option = page.locator(f"div[role='menu']  div:nth-child({option})").first
     await menu_option.wait_for(state="visible")
     await menu_option.click()
+    return True
 
-#Navigate to Courses
-async def navigate_to_courses(page):
-    await check_and_close_page_modal(page)
-    await page.get_by_role("button", name="Courses").first.click()
-    await expect(page).to_have_url(re.compile(r".*/courses$"))
-    print(f"Navigated to {page.url}")
-    await check_and_close_page_modal(page)
-    await page.wait_for_load_state("domcontentloaded")
-
+#View Details
+async def view_course_detail(page,row):
+    await (await row.query_selector("td:last-child button")).click()
+    menu_option = page.locator(f"div[role='menu']  div:nth-child(1)").first
+    await menu_option.wait_for(state="visible")
+    await menu_option.click()
 
 #picks today + days_from_today
 async def pick_date(page, locator, days_from_today=0):
@@ -82,19 +57,20 @@ async def pick_date(page, locator, days_from_today=0):
     await calendar.locator(f'button:has-text("{target_date.day}"):not([disabled])').first.click()
     return target_date
 
-#Get card by specific locator [name, book,mark]
+#Get card by specific locator [name, bookmark]
 async def find_and_open_card_by_element(page,elements,element):
     first_ele=elements.first
     await first_ele.wait_for(state="visible")
     page_no = 1
     while True:
+        print(f"\nFinding [{element}] on page # {page_no}....")
         await page.wait_for_load_state('domcontentloaded')
         all_elements = await elements.all()
 
         for elem in all_elements:
             title = await elem.get_attribute("title")
             if  title.strip() == element:
-                print(f"Found '{element}' on page {page_no}.")
+                print(f"\n\n'{element}' exists on page {page_no}.")
                 parent_ele=elem.first.locator("xpath=..")
                 await parent_ele.wait_for(state="visible")
                 await parent_ele.click()
@@ -113,5 +89,98 @@ async def find_and_open_card_by_element(page,elements,element):
 
     raise Exception(f"Did not find {element} in any page ")
 
+#Get button/text count
+async def get_count(locator):
+    try:
+        # Wait for the element to contain a number in parentheses
+        await locator.click()
+        await expect(locator).to_contain_text(re.compile(r"\(\d+\)"), timeout=10000)
+
+        text = (await locator.text_content()).strip()
+        text_count = re.search(r"\((\d+)\)", text)
+
+        if text_count:
+            count = int(text_count.group(1))
+            print(f"Get > {text}")
+            return count
+        return False
+
+    except Exception as e:
+        print(f"Expected count pattern not found: {e}")
+        return False
 
 
+#Count rows in all pages
+async def count_rows_in_all_pages(page):
+    rows=page.locator("tbody>tr")
+    page_no=1
+    count=0
+    while True:
+        await rows.first.wait_for(state="attached")
+        next_btn=page.get_by_role("button" ,name="Next")
+        rows_in_page= await rows.count()
+        if rows_in_page>0 :
+            if (await rows.first.text_content()) == "No records found":
+                break
+            count += rows_in_page
+            print(f"Rows on page # {page_no} :{rows_in_page}")
+            if await next_btn.is_visible():
+                if await next_btn.is_enabled():
+                    await next_btn.scroll_into_view_if_needed()
+                    await next_btn.click()
+                    page_no += 1
+                else:
+                    break
+            else:
+                break
+        else:
+            print(f"No Records found after page {page_no}")
+            break
+
+    print(f"\nTotal rows : {count}")
+    return count
+
+#Get rows
+async def get_rows(page):
+    await page.wait_for_load_state("domcontentloaded")
+    await page.wait_for_selector("table > tbody > tr",state="visible")
+    rows = page.locator("table > tbody > tr")
+    count = await rows.count()
+    if count==1:
+        record=await rows.nth(0).locator("td").nth(0).inner_text()
+        if record.strip()=="No records found":
+            return 0,rows
+
+    return count,rows
+
+
+#Get row text
+async def get_row_text(page,column_no,row_no=None):
+    column=column_no-1
+    count, rows = await get_rows(page)
+    if count == 0:
+        print("\nNo Records Found in Table !")
+        return None
+    if row_no is not None:
+        if row_no>=count:
+            raise Exception(f"Row {row_no} doesn't exist. Table has only {count} rows.")
+
+        row = rows.nth(0)
+        try:
+            text=await row.locator("td").nth(column).inner_text()
+            print(f"\nGot {text}  in table ")
+            return text.strip()
+        except Exception as e:
+            raise Exception(f"Unable to get row text : {str(e)}")
+    else:
+        all_text=[]
+        for i in range(count):
+            row=rows.nth(i)
+            try:
+                text = await row.locator("td").nth(column).inner_text()
+                all_text.append(text.strip())
+            except Exception as e:
+                raise Exception(f"Failed to get text from row {i}: {str(e)}")
+
+
+        return all_text

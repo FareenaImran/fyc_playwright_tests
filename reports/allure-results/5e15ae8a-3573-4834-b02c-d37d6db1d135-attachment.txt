@@ -1,0 +1,6 @@
+[32mINFO    [0m TestLogger:login_page.py:10 
+Navigated to https://beta-tp.findyourcourses.org/login
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:13 
+Entered Email:john!doe@example.com
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:17 Login Button is Disabled
+[32mINFO    [0m TestLogger:test_login.py:43 Login Failed !! Error:Please enter a valid email address

@@ -5,9 +5,9 @@ from src.pages.tp.dashboard.courses.course_page import CoursePage
 
 @pytest.mark.parametrize("role",["trainer"])
 @pytest.mark.smoke_checklist
-async def test_new_offering_appears_in_existing_course(page,role):
+async def test_new_offering_appears_in_existing_course(page,login,role):
     course=CoursePage(page)
-    await course.find_course_with_status(role)
+    await course.find_course_with_status(login,role)
     #Click on Action button
     action=CourseActions(page)
     offering_data=await action.click_on_action_icon()

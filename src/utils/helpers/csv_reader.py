@@ -16,10 +16,10 @@ def get_cred_from_csv(role:str):
         raise ValueError(f"\nUnsupported Role :{role}")
 
 
-    name_col, email_col, pass_col = ROLE_TO_COLUMNS[role]
+    name_col, email_col, pass_col = ROLE_TO_COLUMNS[role]  #unpack tuple
 
     users = []
-    with open(CSV_PATH,newline="",encoding="utf-8") as csvfile:
+    with open(CSV_PATH,newline="") as csvfile:
         reader=csv.DictReader(csvfile)
 
         for row in reader:

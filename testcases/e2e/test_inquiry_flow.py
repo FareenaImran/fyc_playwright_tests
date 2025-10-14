@@ -2,26 +2,26 @@ import re
 import pytest
 
 from src.base.base_page import BasePage
-from src.pages.admin.learners.Learners import AdminLearners
+from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.learner.course_detail_page import CourseDetailPage
 from src.pages.learner.course_listing import CourseListing
 from src.pages.learner.dashboard_page import DashboardPage
-from src.pages.learner.my_courses.inquired_courses import InquiredCourses
-from src.utils.helpers.common import login_and_verify_dashboard
+from src.pages.tp.dashboard.dashboard_page import TPDashboardPage
+from src.utils.helpers.common import  select_menu_option
 from src.utils.helpers.common_checks import  check_ele_in_all_pages, check_element_in_table
 from src.utils.helpers.logger import logger
-from src.utils.helpers.login_by_name import login_by_name
+from src.utils.helpers.login_helper import login_by_name_or_email
 
 '''
 Test End to End Learner Inquiry on all portal
 '''
 @pytest.mark.e2e
-async def test_inquiry_appears_on_all_portals(page):
+async def test_inquiry_appears_on_all_portals(page,login):
     '''
     LEARNER : Send and Verify Inquiry msg
     '''
     #Login
-    await login_and_verify_dashboard(page,"learner")
+    await login(page,"learner")
     #get learner name
     home_page = DashboardPage(page)
     learner_name=await home_page.get_learner_name()
@@ -59,9 +59,10 @@ async def test_inquiry_appears_on_all_portals(page):
     '''
     TP : Verify Recent Inquiry msg
     '''
-    await login_by_name(page,"trainer",tp_name)
+    await login_by_name_or_email(page,"trainer",tp_name)
     #navigate to learner
-    await page.get_by_text("Learners").first.click()
+    tp_menu=TPDashboardPage(page)
+    await tp_menu.navigate_to_learner()
     #Click on Inquiry
     await page.get_by_role("button",name=re.compile("inquiries",re.IGNORECASE)).click()
     #Verify recent inquiry
@@ -72,14 +73,14 @@ async def test_inquiry_appears_on_all_portals(page):
      Admin : Verify Recent Inquiry msg
     '''
     #Login
-    await login_and_verify_dashboard(page,"admin")
+    await login(page,"admin")
     #Navigate to leaner
-    await page.get_by_text("Learners").first.click()
+    admin_menu=AdminDashboard(page)
+    await admin_menu.navigate_to_learner()
     #Check Learner in all pages
-    _,text_row=await check_ele_in_all_pages(page, learner_name, 3,"All Learners")
+    text,_=await check_ele_in_all_pages(page, learner_name, 3,"All Learners")
     #View Learner details
-    learners=AdminLearners(page)
-    await learners.view_learner_details(text_row)
+    await select_menu_option(page,1,text)
     #View Inquiries
     await page.locator("//button[contains(text(),'Inquiries')]").click()
     #Verify recent inquiry

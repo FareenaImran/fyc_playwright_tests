@@ -3,6 +3,7 @@ import pytest
 from src.base.base_page import BasePage
 from src.utils.generators.course_data_generator import get_random_data
 from src.utils.helpers.common import find_and_open_card_by_element
+from src.utils.helpers.logger import logger
 
 
 class CourseDetailPage(BasePage):
@@ -59,7 +60,7 @@ class CourseDetailPage(BasePage):
 
         if not msg:
             raise Exception("Did not enter any inquiry message ")
-        print(f"Inquiry Message:{msg}")
+        print(f"\nInquiry Message:{msg}")
         return msg
 
     #Submit Inquiry Form
@@ -72,7 +73,9 @@ class CourseDetailPage(BasePage):
     async def verify_claim_option_visible(self,tp_name):
 
         # Navigate to Training Partners
-        await self.page.goto("https://beta.findyourcourses.org/training-partner")
+        url="https://beta.findyourcourses.org/training-partner"
+        await self.page.goto(url)
+        logger.info(f"\nNavigated to {url}")
 
         # get all tp names
         all_elements = self.page.locator("div.group.relative h3[title]")

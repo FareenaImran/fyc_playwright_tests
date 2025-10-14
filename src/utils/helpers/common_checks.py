@@ -1,10 +1,9 @@
 import re
 from src.locators.base_locators.common_locators import CommonLocators
 from src.locators.base_locators.login_locators import LoginLocators
+from src.utils.generators.course_data_generator import get_image
 from src.utils.helpers.logger import logger
 from playwright.async_api import expect, Error
-
-
 
 #Check butn is enabled?
 async def check_is_btn_enabled(page,btn):
@@ -26,7 +25,7 @@ async def check_element_in_table(page, text, column, status):
             cell_title = (await cell.get_attribute("title") or "").strip()
 
             if str(text).strip() in (cell_text or cell_title):
-                print(f"\n'{text}' exists in: {status}")
+                print(f"\n'{text}' exists in '{status}'")
 
                 # Row containing the text
                 row = await cell.evaluate_handle("el => el.closest('tr')")
@@ -74,7 +73,7 @@ async def check_login_error_message(page):
                 r"(invalid|valid email address|invalid-credential|account not activated)",re.IGNORECASE)).first
 
         if await error_locator.is_visible():
-            return await error_locator.inner_text()
+            return await error_locator.text_content()
 
     except Error as e:
        logger.warning (f"Time out error {e}")
@@ -86,7 +85,7 @@ async def check_success_message(page):
     try:
         await page.wait_for_selector(CommonLocators.SUCCESS_MSG)
         success_locator = page.locator(CommonLocators.SUCCESS_MSG).filter(has_text=re.compile(
-                r"(Live|Under Review|Need Attention|Approved|Profile|Success|)",re.IGNORECASE)).first
+                r"(Live|Under Review|Need Attention|approved|profile|success|login|featured|deactivated|active|successfully|claim|Request)",re.IGNORECASE)).first
 
         if await success_locator.is_visible():
             return await success_locator.inner_text()
@@ -102,51 +101,35 @@ async def check_ele_in_all_pages(page,text,column,status):
     original_text=text
     page_no=1
     while True:
+        print(f"\nFinding {original_text} in Page # {page_no}....")
         text,text_row=await check_element_in_table(page,original_text,column,status)
         if text:
             return text,text_row
-
         next_btn = page.locator("//button[contains(text(),'Next')]")
         await next_btn.scroll_into_view_if_needed()
 
         if await next_btn.is_enabled():
             page_no+=1
-            print(f"Finding {original_text} in Page # {page_no}....")
             await next_btn.click()
             await page.wait_for_load_state('networkidle')
-            continue
         else:
             print("No more pages to check further..")
             break
 
     raise Exception(f"Did not find {original_text} in any page ")
 
-#Get rows
-async def get_rows(page):
-    rows = page.locator("table > tbody > tr")
-    count = await rows.count()
-    if count==1:
-        record=await rows.nth(0).locator("td").nth(0).inner_text()
-        if record.strip()=="No records found":
-            return 0,rows
+#check image uploaded successfully
+async def upload_and_verify_image(page,image_input_locator, image_filename, alt_text):
+    # Upload the image
+    ele_id=await image_input_locator.get_attribute("id")
+    await image_input_locator.set_input_files(get_image(image_filename))
 
-    return count,rows
+    if ele_id and "cover" in ele_id.lower():
+        await page.get_by_role("button", name="Save").click()
 
-async def select_and_open_action_option(page,column_no,element):
-        column=column_no-1
-        count, rows = await get_rows(page)
-        if count == 0:
-            print("No Records Found in Table !")
-            return None
-        row = rows.nth(0)
-        text = await row.locator("td").nth(column).inner_text()
-        print(f"Changing Status of {text}")
-        action_btn = row.locator("div[role='menu']  div:nth-child(1)").first
-        await action_btn.scroll_into_view_if_needed()
-        await action_btn.click()
-        btn = page.locator(element)
-        await btn.nth(0).click()
-        return text
+    # Verify the image
+    image_element = page.get_by_alt_text(alt_text)
+    image_src = await image_element.get_attribute("src")
 
-
-
+    await expect(image_element).to_be_visible()
+    return image_src

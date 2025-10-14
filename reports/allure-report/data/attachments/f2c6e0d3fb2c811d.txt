@@ -1,0 +1,11 @@
+[32mINFO    [0m TestLogger:login_page.py:10 
+Navigated to https://beta-admin.findyourcourses.org/
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:13 
+Entered Email:sheraz@newtales.co
+[32mINFO    [0m TestLogger:login_fixtures.py:26 
+Navigated to : https://beta-admin.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:admin_dashboard_page.py:21 
+Navigated to https://beta-admin.findyourcourses.org/portal/training-partners
+[32mINFO    [0m TestLogger:test_edit_tp_profile.py:21 
+Updating Profile Image for Meridian Grammar School
+[32mINFO    [0m TestLogger:test_edit_tp_profile.py:26 Profile Image Updated successfully!!

@@ -1,17 +1,15 @@
 import pytest
-
-from src.pages.admin.learners.Learners import AdminLearners
+from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.learner.course_detail_page import CourseDetailPage
 from src.pages.learner.course_listing import CourseListing
 from src.pages.learner.dashboard_page import DashboardPage
 from src.pages.tp.dashboard.dashboard_page import TPDashboardPage
-from src.utils.helpers.common import login_and_verify_dashboard
+from src.utils.helpers.common import select_menu_option
 from src.utils.helpers.common_checks import  check_element_in_table, check_ele_in_all_pages
-from src.utils.helpers.login_by_name import login_by_name
-
+from src.utils.helpers.login_helper import login_by_name_or_email
 
 @pytest.mark.e2e
-async def test_enrollment_appears_on_all_portal(page):
+async def test_enrollment_appears_on_all_portal(page,login):
     '''
     Test End to End Enrollment Flow on all portal
     '''
@@ -21,7 +19,7 @@ async def test_enrollment_appears_on_all_portal(page):
     2. Enroll to any course
     3. Verify enrollment
     """
-    await login_and_verify_dashboard(page,"learner")
+    await login(page,"learner")
     # get learner name
     home_page = DashboardPage(page)
     learner_name = await home_page.get_learner_name()
@@ -54,7 +52,7 @@ async def test_enrollment_appears_on_all_portal(page):
     2. Verify Application appears in Application list 
     """
 
-    await login_by_name(page,"trainer",tp_name)
+    await login_by_name_or_email(page,"trainer",tp_name)
     #Navigate to learner
     tp_dashboard=TPDashboardPage(page)
     await tp_dashboard.navigate_to_learner()
@@ -70,14 +68,14 @@ async def test_enrollment_appears_on_all_portal(page):
      Admin : Verify Recent Application
     '''
     #Login
-    await login_and_verify_dashboard(page,"admin")
+    await login(page,"admin")
     #Navigate to leaner
-    await page.get_by_text("Learners").first.click()
+    admin_menu=AdminDashboard(page)
+    await admin_menu.navigate_to_learner()
     #Check Learner in all pages
-    _,text_row=await check_ele_in_all_pages(page, learner_name, 3,"All Learners")
+    found,_=await check_ele_in_all_pages(page, learner_name, 3,"All Learners")
     #View Learner details
-    learners=AdminLearners(page)
-    await learners.view_learner_details(text_row)
+    await select_menu_option(page, 1,found)
     #View Inquiries
     await page.locator("//button[contains(text(),'Applications')]").click()
     # Check course name in table

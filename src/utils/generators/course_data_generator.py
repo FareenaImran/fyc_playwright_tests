@@ -28,13 +28,18 @@ def get_random_data():
     return f"{data}"
 
 #Image
-def get_random_image():
+def get_image(image_name):
     project_root = Path(__file__).resolve().parents[3]
     images_dir = project_root / "resources" / "images"
-    image_files = [f for f in images_dir.iterdir() if f.is_file() and f.suffix.lower() in (".jpg", ".jpeg", ".png")]
+    #iterdir returns absolute path : f > C:\SkillWright\Automation_Scripts\FYC\resources\images\course_cover.png
+    #.name returns last word [course_cover] after '/' with extension
+    image_files = {f.name: f for f in images_dir.iterdir() if f.is_file() and f.suffix.lower() in (".jpg", ".jpeg", ".png")}
     if not image_files:
         raise FileNotFoundError(f"No images found in {images_dir}")
-    return str(random.choice(image_files))
+    if image_name in image_files:
+           return image_files[image_name]
+    else:
+        raise FileNotFoundError(f"{image_name} not found")
 
 #fill same fields
 async def fill_same_fields(page,locator):

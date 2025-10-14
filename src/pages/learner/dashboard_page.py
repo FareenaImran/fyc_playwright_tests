@@ -1,6 +1,8 @@
 import re
-from src.base.base_page import BasePage
 from playwright.async_api import expect
+
+from src.base.base_page import BasePage
+from src.base.side_menu import SideMenu
 from src.pages.learner.course_listing import CourseListing
 from src.utils.helpers.logger import logger
 
@@ -9,7 +11,7 @@ class DashboardPage(BasePage):
     async def navigate_to_home_page(self):
         await self.page.get_by_alt_text("Logo").nth(1).click()
         await expect(self.page).to_have_url(re.compile(r"beta.findyourcourses.org/$"))
-        print(f"\nNavigated to : {self.page.url}")
+        logger.info(f"\nNavigated to : {self.page.url}")
 
 
 
@@ -17,7 +19,7 @@ class DashboardPage(BasePage):
         welcome_text=await self.page.locator("//p[@id='hello_text']").inner_text()
         learner_name=re.search(r"Hello, (.*?)!",welcome_text)
         if learner_name:
-            print(f"\nLearner Name:{learner_name.group(1)}")
+            logger.info(f"\nLearner Name:{learner_name.group(1)}")
         return learner_name.group(1)
 
 
@@ -48,6 +50,7 @@ class DashboardPage(BasePage):
         return None
 
     async def navigate_and_open_bookmark_section(self):
+        await self.page.wait_for_load_state("networkidle")
         await self.page.locator('p:has-text("Saved Courses") + h3').click()
         view_all =self.page.locator('p:has-text("Saved Courses") + p:has-text("View All")')
         await view_all.click()
@@ -88,11 +91,11 @@ class DashboardPage(BasePage):
         bookmark_icon =course_card.get_by_label("Add to bookmarks")
         await bookmark_icon.scroll_into_view_if_needed()
         await bookmark_icon.click()
-        print(f"\nBookmarked course : '{course_title}'")
+        logger.info(f"\nBookmarked course : '{course_title}'")
 
         await self.click_on_profile_icon()
-
         await self.navigate_to_my_courses()
+
         course_cards=await self.navigate_and_open_bookmark_section()
         saved_courses_title=await course_cards.locator("h3").all_inner_texts()
         for i,title in enumerate(saved_courses_title):
@@ -100,9 +103,9 @@ class DashboardPage(BasePage):
                course_ele=course_cards.locator("h3").nth(i)
                await course_ele.scroll_into_view_if_needed()
                await course_ele.wait_for(state="visible")
-               print(f"\n'{course_title}' is present in bookmarked section")
+               logger.info(f"\n'{course_title}' is present in bookmarked section")
                return course_title
 
-        return True
+        return None
 
 

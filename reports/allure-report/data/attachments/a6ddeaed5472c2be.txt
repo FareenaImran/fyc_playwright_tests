@@ -1,0 +1,12 @@
+[32mINFO    [0m TestLogger:login_page.py:10 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:13 
+Entered Email:harbor-slipped@gnjvogqr.mailosaur.net
+[32mINFO    [0m TestLogger:login_fixtures.py:26 
+Navigated to : https://beta.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:dashboard_page.py:14 
+Navigated to : https://beta.findyourcourses.org/
+[32mINFO    [0m TestLogger:test_inquiry.py:35 
+Navigated to https://beta.findyourcourses.org/portal/courses
+[32mINFO    [0m TestLogger:test_inquiry.py:42 
+Verified !! Inquiry by learner appears in Inquired Courses

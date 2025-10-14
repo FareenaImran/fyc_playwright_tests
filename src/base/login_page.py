@@ -1,10 +1,13 @@
 from src.base.base_page import BasePage
 from src.locators.base_locators.login_locators import LoginLocators
+from src.utils.helpers.common_checks import check_success_message, check_login_error_message
+from src.utils.helpers.logger import logger
 
 
 class LoginPage(BasePage):
 
     async def login(self,email,password):
+        logger.info(f"\nNavigated to {self.page.url}")
         await self.page.locator(LoginLocators.EMAIL).fill(email)
         await self.page.locator(LoginLocators.PASSWORD).fill(password)
         self.logger.info(f"\nEntered Email:{email}")
@@ -15,7 +18,17 @@ class LoginPage(BasePage):
             return False
 
         await login_btn.click()
-        self.logger.info(f"Clicked On Login Button")
+        # err_msg = await check_login_error_message(self.page)
+        # if err_msg:
+        #     logger.info(f"Error: {err_msg}")
+        # else:
+        #     logger.info(f"\n{await check_success_message(self.page)}")
+
+        await self.page.wait_for_load_state("domcontentloaded")
+        await self.page.wait_for_load_state("networkidle")
+
+            # await expect(self.page).to_have_url(re.compile(r"/dashboard$"))
+            # assert "dashboard" in self.page.url or "profile" in await self.page.content()
 
         return  True
 

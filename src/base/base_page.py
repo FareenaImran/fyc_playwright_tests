@@ -1,8 +1,10 @@
 import re
+from asyncio import timeout
 
 from playwright.async_api import expect
 
-from src.utils.helpers.logger import get_logger
+from src.utils.helpers.common_checks import check_and_close_page_modal
+from src.utils.helpers.logger import get_logger, logger
 
 
 class BasePage:
@@ -10,64 +12,48 @@ class BasePage:
      self.page=page
      self.logger=get_logger(f"{self.__module__}.{self.__class__.__name__}")
 
-    #Get button/text count
-    async def get_count(self, locator):
-        try:
-            # Wait for the element to contain a number in parentheses
-            await locator.click()
-            await expect(locator).to_contain_text(re.compile(r"\(\d+\)"), timeout=10000)
-
-            text = (await locator.text_content()).strip()
-            text_count = re.search(r"\((\d+)\)", text)
-
-            if text_count:
-                count = int(text_count.group(1))
-                print(f"Get > {text}")
-                return count
-            return False
-
-        except Exception as e:
-            print(f"Expected count pattern not found: {e}")
-            return False
-
-
     #Click on profile button
     async def click_on_profile_icon(self):
-        try:
-            icon_with_img=self.page.get_by_role("img", name="profile image")
-            await icon_with_img.scroll_into_view_if_needed()
-            await icon_with_img.click()
-        except:
-            icon_without_img=self.page.locator("(//*[name()='svg'][@class='cursor-pointer text-[#3F00C6]'])[1]")
-            await icon_without_img.scroll_into_view_if_needed()
-            await icon_without_img.click()
+        profile_locator = self.page.get_by_role("img", name="profile image").or_(
+            self.page.locator("(//*[name()='svg'][@class='cursor-pointer text-[#3F00C6]'])[1]")
+        )
 
-    #Count rows in all pages
-    async def count_rows_in_all_pages(self):
-        rows=self.page.locator("tbody>tr")
-        page=1
-        count=0
-        while True:
-            await rows.first.wait_for(state="attached")
-            next_btn=self.page.get_by_role("button" ,name="Next")
-            rows_in_page= await rows.count()
-            if rows_in_page>0 :
-                if (await rows.first.text_content()) == "No records found":
-                    break
-                count += rows_in_page
-                print(f"Rows on page # {page} :{rows_in_page}")
-                if await next_btn.is_visible():
-                    if await next_btn.is_enabled():
-                        await next_btn.scroll_into_view_if_needed()
-                        await next_btn.click()
-                        page += 1
-                    else:
-                        break
-                else:
-                    break
-            else:
-                print(f"No Records found after page {page}")
-                break
+        await profile_locator.scroll_into_view_if_needed()
+        await profile_locator.click()
 
-        print(f"\nTotal rows : {count}")
-        return count
+
+    async def verify_side_menu_navigation(self):
+      options=self.page.locator("//div[@data-sidebar='group']//li//span")
+      count=await options.count()
+      if count==0:
+          logger.warning("No menu options found")
+          return
+      for i in range(count):
+          try:
+              menu=options.nth(i)
+              await menu.wait_for(state="visible")
+
+              text=(await menu.text_content()).strip()
+
+              if not text:
+                  logger.warning(f"Menu option {i} has no text,skipping")
+                  continue
+
+              #Extract last word
+              last_word=text.split()[-1].lower()
+
+              #Click and wait for nav
+              await menu.click()
+              await self.page.wait_for_timeout(500)
+              await self.page.wait_for_load_state("networkidle")
+
+              logger.info(f"Clicked on {last_word}")
+              assert last_word in self.page.url,f"{last_word} is not navigated to the correct url"
+              logger.info(f"Navigated to correct page : {self.page.url}")
+
+          except Exception as e:
+              logger.error(f"Error testing menu option {i}: {str(e)}")
+              continue
+
+
+

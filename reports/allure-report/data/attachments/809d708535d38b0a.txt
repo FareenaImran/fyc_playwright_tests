@@ -1,0 +1,11 @@
+[32mINFO    [0m TestLogger:login_page.py:10 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:13 
+Entered Email:fyctest5401+29@gmail.com
+[32mINFO    [0m TestLogger:login_page.py:10 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:13 
+Entered Email:fyctest5401+21@gmail.com
+[32mINFO    [0m TestLogger:login_fixtures.py:26 
+Navigated to : https://beta.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:test_bookmarked_courses.py:19 Verified course count successfully!

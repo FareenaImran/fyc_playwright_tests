@@ -1,3 +1,0 @@
-[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:10 
-Entered Email:john!doe@example.com
-[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:14 Login Button is Disabled

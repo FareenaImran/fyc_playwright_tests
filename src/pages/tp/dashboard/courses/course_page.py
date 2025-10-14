@@ -5,8 +5,9 @@ from playwright.async_api import expect
 from src.base.base_page import BasePage
 from src.pages.tp.dashboard.courses.fill_course_steps import FillCourseSteps
 from src.pages.tp.dashboard.courses.fill_offering_steps import FillOfferingSteps
-from src.utils.helpers.common import navigate_to_courses, login_and_verify_dashboard
+from src.pages.tp.dashboard.dashboard_page import TPDashboardPage
 from src.utils.helpers.common_checks import check_element_in_table
+from testcases.fixtures.login_fixtures import login
 
 
 class CoursePage(BasePage):
@@ -84,10 +85,11 @@ class CoursePage(BasePage):
                 return None
 
     #Find course with status
-    async def find_course_with_status(self, role):
+    async def find_course_with_status(self,login,role):
             for attempt in range(5):
-                await login_and_verify_dashboard(self.page, role)
-                await navigate_to_courses(self.page)
+                await login(self.page,role)
+                tp_menu = TPDashboardPage(self.page)
+                await tp_menu.navigate_to_courses()
 
                 course = CoursePage(self.page)
                 chosen_status = await course.click_any_non_empty_status()

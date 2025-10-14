@@ -1,6 +1,6 @@
 from playwright.async_api import expect
 from src.base.base_page import BasePage
-from src.utils.generators.course_data_generator import get_random_image, get_random_data, get_random_name,get_random_digits
+from src.utils.generators.course_data_generator import get_image, get_random_data, get_random_name,get_random_digits
 from src.utils.helpers.common import pick_date
 from src.utils.helpers.common_checks import check_element_in_table, check_is_btn_enabled
 
@@ -24,7 +24,7 @@ class FillOfferingSteps(BasePage):
             await self.page.get_by_label("Recorded Lectures").check()
 
             #Instructor Info
-            await self.page.locator('input[type="file"]').set_input_files(get_random_image())
+            await self.page.locator('input[type="file"]').set_input_files(get_image("instructor.jpg"))
             await expect(self.page.locator('img[alt="Uploaded course image"]')).to_be_visible()
             await self.page.locator("#instructorName").fill(get_random_name())
             instructor_name=await self.page.locator("#instructorName").get_attribute("value")

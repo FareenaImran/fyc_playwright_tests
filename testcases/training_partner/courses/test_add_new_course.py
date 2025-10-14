@@ -1,13 +1,15 @@
 import pytest
+
 from src.pages.tp.dashboard.courses.course_page import CoursePage
-from src.utils.helpers.common import navigate_to_courses, login_and_verify_dashboard
+from src.pages.tp.dashboard.dashboard_page import TPDashboardPage
 
 
 @pytest.mark.parametrize("role",["trainer"])
 @pytest.mark.smoke_checklist
-async def test_newly_added_course_appears_in_inprogress_on_save_and_exit(page,role):
-    await login_and_verify_dashboard(page,role)
-    await navigate_to_courses(page)
+async def test_newly_added_course_appears_in_inprogress_on_save_and_exit(page,login,role):
+    await login(page,role)
+    tp_menu=TPDashboardPage(page)
+    await tp_menu.navigate_to_courses()
     tp_courses=CoursePage(page)
     course_name=await tp_courses.add_new_course()
     await page.get_by_role("button", name="Save and Exit").click()
@@ -17,9 +19,10 @@ async def test_newly_added_course_appears_in_inprogress_on_save_and_exit(page,ro
 
 @pytest.mark.parametrize("role", ["trainer"])
 @pytest.mark.smoke_checklist
-async def test_new_course_with_offering_appears_in_under_review_after_submission(page, role):
-    await login_and_verify_dashboard(page, role)
-    await navigate_to_courses(page)
+async def test_new_course_with_offering_appears_in_under_review_after_submission(page,login, role):
+    await login(page,role)
+    tp_menu = TPDashboardPage(page)
+    await tp_menu.navigate_to_courses()
     tp_courses = CoursePage(page)
     course_name=await tp_courses.add_new_course()
     if course_name:
