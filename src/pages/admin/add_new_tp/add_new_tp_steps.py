@@ -1,7 +1,7 @@
 from playwright.async_api import expect
 
 from src.base.base_page import BasePage
-from src.utils.generators.course_data_generator import get_random_tp_name, get_random_data, get_image
+from src.utils.generators.data_generator import get_random_tp_name, get_random_data, get_image
 from src.utils.helpers.common import rs_dropdown
 from src.utils.helpers.common_checks import check_is_btn_enabled, check_success_message, upload_and_verify_image
 from src.utils.helpers.logger import logger

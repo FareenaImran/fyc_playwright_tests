@@ -1,0 +1,23 @@
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta-admin.findyourcourses.org/
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:sheraz@newtales.co
+[32mINFO    [0m TestLogger:login_fixtures.py:27 
+Navigated to : https://beta-admin.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:side_menu.py:23 Navigated to : https://beta-admin.findyourcourses.org/portal/learners
+[32mINFO    [0m TestLogger:learner_helper.py:22 
+  Email :fyctest5401+24@gmail.com | Status:  [deactivate]
+[32mINFO    [0m TestLogger:learner_helper.py:41 
+Status Updated
+Learner status changed to ACTIVE and email notification sent!
+[32mINFO    [0m TestLogger:test_activate_or_deactivate_flow.py:59 
+Navigating to : https://beta.findyourcourses.org/signin
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:fyctest5401+24@gmail.com
+[32mINFO    [0m TestLogger:test_activate_or_deactivate_flow.py:66 
+User Login
+fyctest5401+24@gmail.com login successfully
+[32mINFO    [0m TestLogger:test_activate_or_deactivate_flow.py:70 Verified!! Got Message > User Login
+fyctest5401+24@gmail.com login successfully

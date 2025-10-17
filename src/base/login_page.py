@@ -7,28 +7,23 @@ from src.utils.helpers.logger import logger
 class LoginPage(BasePage):
 
     async def login(self,email,password):
+
         logger.info(f"\nNavigated to {self.page.url}")
+
         await self.page.locator(LoginLocators.EMAIL).fill(email)
         await self.page.locator(LoginLocators.PASSWORD).fill(password)
         self.logger.info(f"\nEntered Email:{email}")
 
         login_btn=self.page.locator(LoginLocators.LOGIN_BTN)
+
         if await login_btn.is_disabled():
             self.logger.info(f"Login Button is Disabled")
             return False
 
         await login_btn.click()
-        # err_msg = await check_login_error_message(self.page)
-        # if err_msg:
-        #     logger.info(f"Error: {err_msg}")
-        # else:
-        #     logger.info(f"\n{await check_success_message(self.page)}")
 
         await self.page.wait_for_load_state("domcontentloaded")
         await self.page.wait_for_load_state("networkidle")
-
-            # await expect(self.page).to_have_url(re.compile(r"/dashboard$"))
-            # assert "dashboard" in self.page.url or "profile" in await self.page.content()
 
         return  True
 

@@ -1,5 +1,5 @@
 from src.base.base_page import BasePage
-from src.utils.generators.course_data_generator import get_random_name
+from src.utils.generators.data_generator import get_random_name
 from src.utils.generators.email_generator import get_random_email
 from src.utils.helpers.common_checks import check_success_message
 from src.utils.helpers.logger import logger

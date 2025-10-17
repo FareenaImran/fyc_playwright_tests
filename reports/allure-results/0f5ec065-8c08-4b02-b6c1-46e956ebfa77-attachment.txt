@@ -1,0 +1,18 @@
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:fyctest5401+30@gmail.com
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:fyctest5401+8@gmail.com
+[32mINFO    [0m TestLogger:login_fixtures.py:27 
+Navigated to : https://beta.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:test_login_sessions.py:26 
+Logged inside Chromium
+[32mINFO    [0m TestLogger:test_login_sessions.py:35 
+Verified !! learner not logged in inside incognito mode
+[32mINFO    [0m TestLogger:test_login_sessions.py:44 
+Verified !! learner not logged in inside firefox
+[32mINFO    [0m TestLogger:test_login_sessions.py:53 
+Verified !! learner not logged in inside webkit

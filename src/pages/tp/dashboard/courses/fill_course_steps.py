@@ -1,5 +1,5 @@
 from src.base.base_page import BasePage
-from src.utils.generators.course_data_generator import get_random_course_name, get_random_data, get_image, fill_same_fields
+from src.utils.generators.data_generator import get_random_course_name, get_random_data, get_image, fill_same_fields
 from src.utils.helpers.common import rs_dropdown
 from src.utils.helpers.common_checks import check_is_btn_enabled
 

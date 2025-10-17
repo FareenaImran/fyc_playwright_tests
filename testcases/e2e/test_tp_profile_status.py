@@ -41,6 +41,7 @@ async def test_send_feedback_to_tp_changes_their_status_to_needs_attention(page,
 
 
     #send feedback
+    await page.get_by_role("button", name="Send back with feedback").click()
     tp_detail=ProfileDetails(page)
     admin_feedback=await tp_detail.send_feedback()
 

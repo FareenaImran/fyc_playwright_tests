@@ -44,5 +44,24 @@ async def test_login_with_invalid_email(page,role):
 
 
 
+# @pytest.mark.parametrize("role",["learner"])
+# async def test_login_with_google(page,role):
+#     #login
+#     await page.goto("https://beta.findyourcourses.org/signin")
+#
+#     #Auth Window
+#     async with page.expect_popup() as popup_info:
+#         await page.get_by_text("Log in with Google").click()
+#     popup = await popup_info.value
+#
+#     await popup.get_by_label("Email or phone").fill("fyctest5401@gmail.com")
+#     await popup.get_by_role("button", name="Next").click()
+#
+#     #Verigy Login
+#     success=await check_success_message(page)
+#     assert success,"Unable to login with Google"
+
+
+
 
 

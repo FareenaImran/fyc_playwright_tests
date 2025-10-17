@@ -1,0 +1,12 @@
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:fyctest5401+25@gmail.com
+[32mINFO    [0m TestLogger:login_fixtures.py:27 
+Navigated to : https://beta.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:dashboard_page.py:14 
+Navigated to : https://beta.findyourcourses.org/
+[32mINFO    [0m TestLogger:dashboard_page.py:94 
+Bookmarked course : 'COURSE R Programming - 10MC'
+[32mINFO    [0m TestLogger:dashboard_page.py:106 
+'COURSE R Programming - 10MC' is present in bookmarked section

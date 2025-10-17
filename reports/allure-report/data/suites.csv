@@ -1,58 +1,76 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","8157","test_login_with_valid_credentials[learner]","testcases.authentication","Tue Oct 14 19:52:21 PKT 2025","passed","Tue Oct 14 19:52:29 PKT 2025","","test_login","",""
-"Test that when admin turn on featured partner
-     then tp appears on home page ","16237","test_featured_tp_appears_on_home_page","testcases.e2e","Tue Oct 14 20:00:15 PKT 2025","skipped","Tue Oct 14 20:00:31 PKT 2025","","test_featured_partner","",""
-"","45307","test_new_offering_appears_in_existing_course[trainer]","testcases.training_partner.courses","Tue Oct 14 20:06:24 PKT 2025","passed","Tue Oct 14 20:07:09 PKT 2025","","test_add_new_offering","",""
-"","6318","test_login_with_valid_credentials[admin]","testcases.authentication","Tue Oct 14 19:52:41 PKT 2025","passed","Tue Oct 14 19:52:48 PKT 2025","","test_login","",""
-"Test that if admin deactivates learner account
-    then learner should not allow to login","25488","test_deactivate_learner_account_prevents_login","testcases.e2e","Tue Oct 14 19:55:44 PKT 2025","passed","Tue Oct 14 19:56:10 PKT 2025","","test_activate_or_deactivate_flow","",""
+"Verify that a TP added by admin appears with claim profile option","20141","test_tp_added_by_admin_appears_with_claim_option","testcases.e2e","Fri Oct 17 12:18:32 PKT 2025","passed","Fri Oct 17 12:18:52 PKT 2025","","test_claim_profile","",""
+"Ensure sessions do not persist in incognito or across browsers.","47758","test_login_session_in_incognito_and_diff_browsers[learner-https://beta.findyourcourses.org/portal/dashboard]","testcases.e2e","Fri Oct 17 12:25:22 PKT 2025","passed","Fri Oct 17 12:26:10 PKT 2025","","test_login_sessions","",""
+"","7289","test_login_with_valid_credentials[learner]","testcases.authentication","Fri Oct 17 12:12:03 PKT 2025","passed","Fri Oct 17 12:12:10 PKT 2025","","test_login","",""
 "
-       Test that when admin changes TP profile status to 'Approved',
-       the status is immediately reflected on the TP dashboard.
-    ","12202","test_profile_status_syncs_to_tp_dashboard_when_approved_by_admin[Up for review]","testcases.e2e","Tue Oct 14 20:02:17 PKT 2025","skipped","Tue Oct 14 20:02:29 PKT 2025","","test_tp_profile_status","",""
-"","4786","test_login_with_invalid_email[admin]","testcases.authentication","Tue Oct 14 19:53:06 PKT 2025","passed","Tue Oct 14 19:53:10 PKT 2025","","test_login","",""
-"","8737","test_logout[learner]","testcases.authentication","Tue Oct 14 19:53:13 PKT 2025","passed","Tue Oct 14 19:53:22 PKT 2025","","test_logout","",""
-"Test that turning on toggle button displays 'Yes' value in table","11373","test_admin_can_enable_featured_partner_via_toggle_showing_yes_in_table","testcases.admin.training_partners","Tue Oct 14 19:51:21 PKT 2025","skipped","Tue Oct 14 19:51:32 PKT 2025","","test_featured_partner","",""
-"","6951","test_login_with_valid_credentials[trainer]","testcases.authentication","Tue Oct 14 19:52:31 PKT 2025","passed","Tue Oct 14 19:52:38 PKT 2025","","test_login","",""
-"","8408","test_logout[admin]","testcases.authentication","Tue Oct 14 19:53:36 PKT 2025","passed","Tue Oct 14 19:53:45 PKT 2025","","test_logout","",""
-"Verify that submitting claim profile form moves TP to claimed accounts section","36470","test_claim_profile_moves_tp_to_claimed_section","testcases.e2e","Tue Oct 14 19:58:14 PKT 2025","passed","Tue Oct 14 19:58:50 PKT 2025","","test_claim_profile","",""
+    Test that Course status count is correct
+    ","29667","test_course_status_count","testcases.admin.courses","Fri Oct 17 12:02:24 PKT 2025","failed","Fri Oct 17 12:02:53 PKT 2025","","test_course_status","",""
+"Verify that submitting claim profile form moves TP to claimed accounts section","42376","test_claim_profile_moves_tp_to_claimed_section","testcases.e2e","Fri Oct 17 12:21:02 PKT 2025","passed","Fri Oct 17 12:21:44 PKT 2025","","test_claim_profile","",""
+"Test that feedback added by admin for TP/Courses appears in feedback table","20448","test_feedback_added_by_admin_shows_on_top[tp]","testcases.admin.training_partners","Fri Oct 17 12:05:31 PKT 2025","passed","Fri Oct 17 12:05:51 PKT 2025","","test_crm","",""
 "
-    Test End to End Enrollment Flow on all portal
-    ","50252","test_enrollment_appears_on_all_portal","testcases.e2e","Tue Oct 14 19:58:54 PKT 2025","passed","Tue Oct 14 19:59:44 PKT 2025","","test_enrollment_flow","",""
-"
-    Test that All TPs  status count is correct
-    ","42368","test_tp_status_count","testcases.admin.training_partners","Tue Oct 14 19:51:35 PKT 2025","passed","Tue Oct 14 19:52:17 PKT 2025","","test_status_count","",""
-"","16475","test_edit_tp_profile_picture","testcases.admin.training_partners","Tue Oct 14 19:51:00 PKT 2025","passed","Tue Oct 14 19:51:17 PKT 2025","","test_edit_tp_profile","",""
-"Test that if admin activates learner account
-    then learner should allow to login","25143","test_activate_learner_account_allows_login","testcases.e2e","Tue Oct 14 19:56:13 PKT 2025","passed","Tue Oct 14 19:56:39 PKT 2025","","test_activate_or_deactivate_flow","",""
-"","4451","test_login_with_invalid_email[learner]","testcases.authentication","Tue Oct 14 19:52:51 PKT 2025","passed","Tue Oct 14 19:52:55 PKT 2025","","test_login","",""
-"
-       Test that when admin changes TP profile status to 'Approved',
-       the status is immediately reflected on the TP dashboard.
-    ","12229","test_profile_status_syncs_to_tp_dashboard_when_approved_by_admin[Needs Attention]","testcases.e2e","Tue Oct 14 20:02:01 PKT 2025","skipped","Tue Oct 14 20:02:14 PKT 2025","","test_tp_profile_status","",""
-"","18977","test_learner_bookmarked_courses_count[learner]","testcases.learner","Tue Oct 14 20:02:32 PKT 2025","passed","Tue Oct 14 20:02:51 PKT 2025","","test_bookmarked_courses","",""
-"Test that side menu options navigating to correct url","14988","test_side_menu_navigation[learner]","testcases.common","Tue Oct 14 19:53:47 PKT 2025","passed","Tue Oct 14 19:54:02 PKT 2025","","test_side_menu_navigation","",""
-"Test that when admin turn on featured course
-     then course appears on home page ","26137","test_featured_course_appears_on_home_page","testcases.e2e","Tue Oct 14 19:59:47 PKT 2025","failed","Tue Oct 14 20:00:13 PKT 2025","","test_featured_course","",""
-"","87365","test_new_course_with_offering_appears_in_under_review_after_submission[trainer]","testcases.training_partner.courses","Tue Oct 14 20:04:49 PKT 2025","passed","Tue Oct 14 20:06:17 PKT 2025","","test_add_new_course","",""
-"","23436","test_inquiry_by_learner_appears_in_inquired_courses[learner]","testcases.learner","Tue Oct 14 20:03:30 PKT 2025","passed","Tue Oct 14 20:03:53 PKT 2025","","test_inquiry","",""
-"Verify that a TP added by admin appears with claim profile option","18312","test_tp_added_by_admin_appears_with_claim_option","testcases.e2e","Tue Oct 14 19:57:17 PKT 2025","passed","Tue Oct 14 19:57:35 PKT 2025","","test_claim_profile","",""
+    LEARNER : Send and Verify Inquiry msg
+    ","62758","test_inquiry_appears_on_all_portals","testcases.e2e","Fri Oct 17 12:24:15 PKT 2025","passed","Fri Oct 17 12:25:18 PKT 2025","","test_inquiry_flow","",""
+"","17908","test_user_is_able_to_login_with_updated_password[trainer]","testcases.common","Fri Oct 17 12:16:24 PKT 2025","passed","Fri Oct 17 12:16:42 PKT 2025","","test_update_password","",""
+"Test that crm added by admin for TP & Courses & Learners appears in crm table","26971","test_crm_added_by_admin_shows_on_top[courses]","testcases.admin.training_partners","Fri Oct 17 12:06:56 PKT 2025","passed","Fri Oct 17 12:07:23 PKT 2025","","test_crm","",""
+"","245918","test_broken_images_in_all_pages[Training Partners]","testcases.learner","Fri Oct 17 12:29:29 PKT 2025","passed","Fri Oct 17 12:33:35 PKT 2025","","test_broken_images","",""
+"","6232","test_login_with_valid_credentials[admin]","testcases.authentication","Fri Oct 17 12:12:24 PKT 2025","passed","Fri Oct 17 12:12:30 PKT 2025","","test_login","",""
+"","4319","test_login_with_invalid_email[trainer]","testcases.authentication","Fri Oct 17 12:12:39 PKT 2025","passed","Fri Oct 17 12:12:44 PKT 2025","","test_login","",""
 "
     Test that when admin sends feedback to a TP,
     the TP's profile status changes to 'Needs Attention' on their dashboard
-    ","11309","test_send_feedback_to_tp_changes_their_status_to_needs_attention","testcases.e2e","Tue Oct 14 20:01:47 PKT 2025","skipped","Tue Oct 14 20:01:58 PKT 2025","","test_tp_profile_status","",""
-"","4243","test_login_with_invalid_email[trainer]","testcases.authentication","Tue Oct 14 19:52:59 PKT 2025","passed","Tue Oct 14 19:53:03 PKT 2025","","test_login","",""
+    ","29256","test_send_feedback_to_tp_changes_their_status_to_needs_attention","testcases.e2e","Fri Oct 17 12:27:33 PKT 2025","passed","Fri Oct 17 12:28:03 PKT 2025","","test_tp_profile_status","",""
+"Ensure sessions do not persist in incognito or across browsers.","35127","test_login_session_in_incognito_and_diff_browsers[admin-https://beta-admin.findyourcourses.org/portal/dashboard]","testcases.e2e","Fri Oct 17 12:26:54 PKT 2025","passed","Fri Oct 17 12:27:29 PKT 2025","","test_login_sessions","",""
+"Test that feedback added by admin for TP/Courses appears in feedback table","26444","test_feedback_added_by_admin_shows_on_top[courses]","testcases.admin.training_partners","Fri Oct 17 12:05:57 PKT 2025","passed","Fri Oct 17 12:06:24 PKT 2025","","test_crm","",""
+"","14280","test_logout[learner]","testcases.authentication","Fri Oct 17 12:12:55 PKT 2025","passed","Fri Oct 17 12:13:09 PKT 2025","","test_logout","",""
+"","16301","test_learner_bookmarked_courses_count[learner]","testcases.learner","Fri Oct 17 12:28:41 PKT 2025","passed","Fri Oct 17 12:28:58 PKT 2025","","test_bookmarked_courses","",""
+"Test that crm added by admin for TP & Courses & Learners appears in crm table","23936","test_crm_added_by_admin_shows_on_top[tp]","testcases.admin.training_partners","Fri Oct 17 12:06:28 PKT 2025","passed","Fri Oct 17 12:06:52 PKT 2025","","test_crm","",""
+"","53606","test_new_offering_appears_in_existing_course[trainer]","testcases.training_partner.courses","Fri Oct 17 12:37:42 PKT 2025","passed","Fri Oct 17 12:38:36 PKT 2025","","test_add_new_offering","",""
+"","25160","test_course_appears_in_bookmark_section_after_saving[learner]","testcases.learner","Fri Oct 17 12:29:01 PKT 2025","passed","Fri Oct 17 12:29:26 PKT 2025","","test_bookmarked_courses","",""
 "
     Test that Learners status count is correct
-    ","14240","test_learner_status_count","testcases.admin.learner","Tue Oct 14 19:49:59 PKT 2025","failed","Tue Oct 14 19:50:13 PKT 2025","","test_admin_learner","",""
-"Add New TP By Admin","3272","test_add_new_tp","testcases.admin.training_partners.add_new_tp","Tue Oct 14 19:50:54 PKT 2025","passed","Tue Oct 14 19:50:57 PKT 2025","","test_add_new_tp","",""
-"","50461","test_newly_added_course_appears_in_inprogress_on_save_and_exit[trainer]","testcases.training_partner.courses","Tue Oct 14 20:03:56 PKT 2025","passed","Tue Oct 14 20:04:46 PKT 2025","","test_add_new_course","",""
-"Test that side menu options navigating to correct url","78742","test_side_menu_navigation[trainer]","testcases.common","Tue Oct 14 19:54:06 PKT 2025","passed","Tue Oct 14 19:55:25 PKT 2025","","test_side_menu_navigation","",""
-"","34369","test_change_course_status_from_under_review_to_approved[admin]","testcases.admin.courses","Tue Oct 14 19:48:53 PKT 2025","passed","Tue Oct 14 19:49:28 PKT 2025","","test_change_course_status","",""
-"Test that side menu options navigating to correct url","14208","test_side_menu_navigation[admin]","testcases.common","Tue Oct 14 19:55:27 PKT 2025","passed","Tue Oct 14 19:55:42 PKT 2025","","test_side_menu_navigation","",""
-"","8932","test_logout[trainer]","testcases.authentication","Tue Oct 14 19:53:24 PKT 2025","passed","Tue Oct 14 19:53:33 PKT 2025","","test_logout","",""
-"","27300","test_course_appears_in_bookmark_section_after_saving[learner]","testcases.learner","Tue Oct 14 20:02:58 PKT 2025","passed","Tue Oct 14 20:03:26 PKT 2025","","test_bookmarked_courses","",""
+    ","17133","test_learner_status_count","testcases.admin.learner","Fri Oct 17 12:03:47 PKT 2025","failed","Fri Oct 17 12:04:05 PKT 2025","","test_admin_learner","",""
+"","91693","test_new_course_with_offering_appears_in_under_review_after_submission[trainer]","testcases.training_partner.courses","Fri Oct 17 12:36:08 PKT 2025","passed","Fri Oct 17 12:37:39 PKT 2025","","test_add_new_course","",""
 "
-    LEARNER : Send and Verify Inquiry msg
-    ","68372","test_inquiry_appears_on_all_portals","testcases.e2e","Tue Oct 14 20:00:35 PKT 2025","broken","Tue Oct 14 20:01:43 PKT 2025","","test_inquiry_flow","",""
-"Test that turning on toggle button displays 'Yes' value in table","25128","test_admin_can_enable_featured_course_via_toggle_showing_yes_in_table","testcases.admin.courses","Tue Oct 14 19:49:31 PKT 2025","passed","Tue Oct 14 19:49:56 PKT 2025","","test_featured_courses","",""
+       Test that when admin changes TP profile status to 'Approved',
+       the status is immediately reflected on the TP dashboard.
+    ","16587","test_profile_status_syncs_to_tp_dashboard_when_approved_by_admin[Needs Attention]","testcases.e2e","Fri Oct 17 12:28:05 PKT 2025","skipped","Fri Oct 17 12:28:22 PKT 2025","","test_tp_profile_status","",""
+"","43480","test_change_course_status_from_under_review_to_approved[admin]","testcases.admin.courses","Fri Oct 17 12:00:58 PKT 2025","passed","Fri Oct 17 12:01:41 PKT 2025","","test_change_course_status","",""
+"","15646","test_logout[trainer]","testcases.authentication","Fri Oct 17 12:13:12 PKT 2025","passed","Fri Oct 17 12:13:28 PKT 2025","","test_logout","",""
+"Test that if admin activates learner account
+    then learner should allow to login","27221","test_activate_learner_account_allows_login","testcases.e2e","Fri Oct 17 12:17:15 PKT 2025","passed","Fri Oct 17 12:17:43 PKT 2025","","test_activate_or_deactivate_flow","",""
+"Test that crm added by admin for TP & Courses & Learners appears in crm table","24434","test_crm_added_by_admin_shows_on_top[learners]","testcases.admin.training_partners","Fri Oct 17 12:07:26 PKT 2025","passed","Fri Oct 17 12:07:51 PKT 2025","","test_crm","",""
+"","16944","test_search_displays_correct_results_in_table[Learners-BETAL_UP1]","testcases.admin.training_partners","Fri Oct 17 12:10:19 PKT 2025","passed","Fri Oct 17 12:10:36 PKT 2025","","test_search","",""
+"Test that turning on toggle button displays 'Yes' value in table","28412","test_admin_can_enable_featured_course_via_toggle_showing_yes_in_table","testcases.admin.courses","Fri Oct 17 12:02:56 PKT 2025","passed","Fri Oct 17 12:03:24 PKT 2025","","test_featured_courses","",""
+"","4404","test_login_with_invalid_email[learner]","testcases.authentication","Fri Oct 17 12:12:33 PKT 2025","passed","Fri Oct 17 12:12:37 PKT 2025","","test_login","",""
+"","61068","test_newly_added_course_appears_in_inprogress_on_save_and_exit[trainer]","testcases.training_partner.courses","Fri Oct 17 12:34:37 PKT 2025","passed","Fri Oct 17 12:35:38 PKT 2025","","test_add_new_course","",""
+"Test that when admin turn on featured course
+     then course appears on home page ","29030","test_featured_course_appears_on_home_page","testcases.e2e","Fri Oct 17 12:23:23 PKT 2025","failed","Fri Oct 17 12:23:52 PKT 2025","","test_featured_course","",""
+"","15484","test_search_displays_correct_results_in_table[Training Partners-BETATP_UP1]","testcases.admin.training_partners","Fri Oct 17 12:09:08 PKT 2025","passed","Fri Oct 17 12:09:23 PKT 2025","","test_search","",""
+"","18390","test_edit_tp_profile_picture","testcases.admin.training_partners","Fri Oct 17 12:07:53 PKT 2025","passed","Fri Oct 17 12:08:12 PKT 2025","","test_edit_tp_profile","",""
+"","8445","test_login_with_valid_credentials[trainer]","testcases.authentication","Fri Oct 17 12:12:13 PKT 2025","passed","Fri Oct 17 12:12:21 PKT 2025","","test_login","",""
+"Add New TP By Admin","3356","test_add_new_tp","testcases.admin.training_partners.add_new_tp","Fri Oct 17 12:04:47 PKT 2025","passed","Fri Oct 17 12:04:51 PKT 2025","","test_add_new_tp","",""
+"
+    Test End to End Enrollment Flow on all portal
+    ","60014","test_enrollment_appears_on_all_portal","testcases.e2e","Fri Oct 17 12:21:48 PKT 2025","passed","Fri Oct 17 12:22:48 PKT 2025","","test_enrollment_flow","",""
+"Test that side menu options navigating to correct url","81466","test_side_menu_navigation[trainer]","testcases.common","Fri Oct 17 12:14:14 PKT 2025","passed","Fri Oct 17 12:15:35 PKT 2025","","test_side_menu_navigation","",""
+"Test that turning on toggle button displays 'Yes' value in table","19702","test_admin_can_enable_featured_partner_via_toggle_showing_yes_in_table","testcases.admin.training_partners","Fri Oct 17 12:08:14 PKT 2025","passed","Fri Oct 17 12:08:34 PKT 2025","","test_featured_partner","",""
+"","18175","test_user_is_able_to_login_with_updated_password[learner]","testcases.common","Fri Oct 17 12:16:03 PKT 2025","passed","Fri Oct 17 12:16:21 PKT 2025","","test_update_password","",""
+"","19287","test_search_displays_correct_results_in_table[Courses-COURSE Test Automation - lwko]","testcases.admin.training_partners","Fri Oct 17 12:09:26 PKT 2025","passed","Fri Oct 17 12:09:46 PKT 2025","","test_search","",""
+"","13982","test_logout[admin]","testcases.authentication","Fri Oct 17 12:13:31 PKT 2025","passed","Fri Oct 17 12:13:45 PKT 2025","","test_logout","",""
+"Test that if admin deactivates learner account
+    then learner should not allow to login","28396","test_deactivate_learner_account_prevents_login","testcases.e2e","Fri Oct 17 12:16:45 PKT 2025","passed","Fri Oct 17 12:17:13 PKT 2025","","test_activate_or_deactivate_flow","",""
+"Ensure sessions do not persist in incognito or across browsers.","37060","test_login_session_in_incognito_and_diff_browsers[trainer-https://beta-tp.findyourcourses.org/portal/dashboard]","testcases.e2e","Fri Oct 17 12:26:13 PKT 2025","passed","Fri Oct 17 12:26:50 PKT 2025","","test_login_sessions","",""
+"
+       Test that when admin changes TP profile status to 'Approved',
+       the status is immediately reflected on the TP dashboard.
+    ","14523","test_profile_status_syncs_to_tp_dashboard_when_approved_by_admin[Up for review]","testcases.e2e","Fri Oct 17 12:28:25 PKT 2025","skipped","Fri Oct 17 12:28:39 PKT 2025","","test_tp_profile_status","",""
+"
+    Test that All TPs  status count is correct
+    ","48025","test_tp_status_count","testcases.admin.training_partners","Fri Oct 17 12:10:41 PKT 2025","passed","Fri Oct 17 12:11:29 PKT 2025","","test_status_count","",""
+"","6155","test_login_with_invalid_email[admin]","testcases.authentication","Fri Oct 17 12:12:46 PKT 2025","passed","Fri Oct 17 12:12:52 PKT 2025","","test_login","",""
+"Test that side menu options navigating to correct url","18723","test_side_menu_navigation[learner]","testcases.common","Fri Oct 17 12:13:48 PKT 2025","passed","Fri Oct 17 12:14:06 PKT 2025","","test_side_menu_navigation","",""
+"Test that side menu options navigating to correct url","18353","test_side_menu_navigation[admin]","testcases.common","Fri Oct 17 12:15:39 PKT 2025","passed","Fri Oct 17 12:15:58 PKT 2025","","test_side_menu_navigation","",""
+"Test that when admin turn on featured partner
+     then tp appears on home page ","15072","test_featured_tp_appears_on_home_page","testcases.e2e","Fri Oct 17 12:23:56 PKT 2025","skipped","Fri Oct 17 12:24:12 PKT 2025","","test_featured_partner","",""
+"","23323","test_broken_images_in_all_pages[Courses]","testcases.learner","Fri Oct 17 12:33:39 PKT 2025","passed","Fri Oct 17 12:34:02 PKT 2025","","test_broken_images","",""
+"","28572","test_inquiry_by_learner_appears_in_inquired_courses[learner]","testcases.learner","Fri Oct 17 12:34:06 PKT 2025","passed","Fri Oct 17 12:34:34 PKT 2025","","test_inquiry","",""

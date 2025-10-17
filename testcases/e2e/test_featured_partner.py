@@ -2,7 +2,7 @@ import pytest
 
 from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.admin.courses.course_detail_page import CourseDetailPage
-from src.utils.helpers.common import  view_course_detail
+from src.utils.helpers.common import view_course_details
 from src.utils.helpers.common_checks import check_success_message, check_element_in_table
 from src.utils.helpers.logger import logger
 
@@ -28,7 +28,8 @@ async def test_featured_tp_appears_on_home_page(page,login):
     s_no = await (await row.query_selector("td:nth-child(1)")).inner_text()
 
     # View TP details
-    await view_course_detail(page, row)
+    await (await row.query_selector("td:last-child button")).click()
+    await view_course_details(page)
 
     # featured Tp
     logger.info(f"\nTurning ON featured button for {tp_name}")
@@ -49,4 +50,4 @@ async def test_featured_tp_appears_on_home_page(page,login):
 
     #Verify TP name
     assert tp_name in featured_tps,f"{tp_name} not found in featured TP's list"
-    logger.info(f"\ginVerified {tp_name} appears in featured TP's list")
+    logger.info(f"\nVerified {tp_name} appears in featured TP's list")

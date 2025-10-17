@@ -21,6 +21,7 @@ async def login():
             err_msg = await check_login_error_message(page)
             if err_msg:
                 continue
+            await page.wait_for_load_state("networkidle")
             await expect(page).to_have_url(re.compile(r"/dashboard$"))
             assert "dashboard" in page.url or "profile" in await page.content()
             logger.info(f"\nNavigated to : {page.url}")

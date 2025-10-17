@@ -1,0 +1,14 @@
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:fyctest5401+lup1@gmail.com
+[32mINFO    [0m TestLogger:test_update_password.py:32 
+Password updated successfully
+[32mINFO    [0m TestLogger:test_update_password.py:41 
+Logging With Updated Password.....
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta.findyourcourses.org/signin
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:fyctest5401+lup1@gmail.com
+[32mINFO    [0m TestLogger:test_update_password.py:43 User Login
+fyctest5401+lup1@gmail.com login successfully

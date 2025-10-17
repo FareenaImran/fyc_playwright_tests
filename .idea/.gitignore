@@ -4,6 +4,7 @@
 src/utils/test_data/users.csv
 src/utils/storage/used_claimed_emails.csv
 .env
+src/utils/storage/update_password_emails.json
 
 # Python cache
 __pycache__/

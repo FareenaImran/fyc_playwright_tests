@@ -3,7 +3,7 @@ import pytest
 from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.admin.courses.course_detail_page import CourseDetailPage
 from src.pages.admin.courses.courses_info import CoursesInfo
-from src.utils.helpers.common import get_row_text, select_menu_option, view_course_detail
+from src.utils.helpers.common import get_row_text, select_menu_option, view_course_details
 from src.utils.helpers.common_checks import check_success_message, check_element_in_table
 from src.utils.helpers.logger import logger
 
@@ -27,10 +27,10 @@ async def test_featured_course_appears_on_home_page(page,login):
     if not unchecked:
         pytest.skip("All Course are already marked as featured course...Skipping Test")
     course_name = await (await row.query_selector("td:nth-child(3)")).inner_text()
-    s_no = await (await row.query_selector("td:nth-child(1)")).inner_text()
 
     # View Course details
-    await view_course_detail(page,row)
+    await (await row.query_selector("td:last-child button")).click()
+    await view_course_details(page)
 
     # featured course
     logger.info(f"\nTurning ON featured button for {course_name}")

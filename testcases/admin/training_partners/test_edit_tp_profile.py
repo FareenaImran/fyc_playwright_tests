@@ -23,7 +23,8 @@ async def test_edit_tp_profile_picture(page,login,status="Up for review"):
          cover_img,logo_img=await step.fill_3rd_step()
          if not cover_img and logo_img:
              raise Exception("Failed to upload profile image")
-         logger.info("Profile Image Updated successfully!!")
+         logger.info(f"\n - Cover Image : {cover_img}\n - Institute Logo : {logo_img}")
+         logger.info("\nProfile Image Updated successfully!!")
 
 
 

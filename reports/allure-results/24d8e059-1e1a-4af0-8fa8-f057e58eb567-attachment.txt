@@ -1,6 +1,0 @@
-[32mINFO    [0m TestLogger:login_page.py:10 
-Navigated to https://beta-tp.findyourcourses.org/login
-[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:13 
-Entered Email:fyctest5401+13@gmail.com
-[32mINFO    [0m TestLogger:login_fixtures.py:26 
-Navigated to : https://beta-tp.findyourcourses.org/portal/dashboard

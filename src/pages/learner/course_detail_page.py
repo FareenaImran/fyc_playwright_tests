@@ -1,7 +1,7 @@
 import re
 import pytest
 from src.base.base_page import BasePage
-from src.utils.generators.course_data_generator import get_random_data
+from src.utils.generators.data_generator import get_random_data
 from src.utils.helpers.common import find_and_open_card_by_element
 from src.utils.helpers.logger import logger
 

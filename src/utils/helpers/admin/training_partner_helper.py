@@ -1,7 +1,7 @@
 import pytest
 
 from src.pages.admin.admin_dashboard_page import AdminDashboard
-from src.utils.helpers.common import get_row_text, select_menu_option
+from src.utils.helpers.common import get_row_text, select_menu_option, view_course_details
 from src.utils.helpers.csv_reader import get_cred_from_csv
 from src.utils.helpers.logger import logger
 from src.utils.helpers.login_helper import login_by_name_or_email
@@ -30,7 +30,6 @@ async def approve_tp_profile(page,login,status):
         logger.info("\nCredentials for TPs in under review are not found in csv")
         pytest.skip("\nSkipping Test...")
 
-
     logger.info(f"\nApproving '{tp_name}' ....")
     try:
         approve=page.get_by_role("button",name="Approve")
@@ -42,14 +41,41 @@ async def approve_tp_profile(page,login,status):
 
     return tp_name
 
+#TP Dashboard Status
 async def verify_tp_dashboard_status_is_approved(page,tp_name):
+    """Verify TP Status on Dashboard"""
     #login
     await login_by_name_or_email(page,"trainer",tp_name)
-
     # get status
     status=await page.locator("(//p[contains(text(),'Profile Status')]/following-sibling::div/p)[1]").inner_text()
     return status.strip()
 
+#Admin - CRM
+async def navigate_to_crm(page,login,option):
+    """Navigate to CRM"""
+    await login(page, "admin")
+    #Naviagte to TP / Courses /Learners
+    try:
+        if option=="tp":
+            #Navigate to tp
+            menu = AdminDashboard(page)
+            await menu.navigate_to_tp()
+        elif option=="courses":
+            #Navigate to courses
+            menu = AdminDashboard(page)
+            await menu.navigate_to_courses()
+        elif option=="learners":
+            # Navigate to learners
+            menu = AdminDashboard(page)
+            await menu.navigate_to_learner()
+    except ValueError as e:
+        logger.info(f"\nNavigation option is invalid : {str(e)}")
+
+    # view profile details
+    await page.locator("tr:has(td:nth-child(1):has-text('1')) td:last-child button").first.click()
+    await view_course_details(page)
+    # CRM
+    await page.get_by_role("button", name="CRM").click()
 
 
 

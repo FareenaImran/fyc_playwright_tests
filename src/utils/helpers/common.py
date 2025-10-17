@@ -24,9 +24,8 @@ async def select_menu_option(page,option,text):
     await menu_option.click()
     return True
 
-#View Details
-async def view_course_detail(page,row):
-    await (await row.query_selector("td:last-child button")).click()
+#View Details for specific
+async def view_course_details(page):
     menu_option = page.locator(f"div[role='menu']  div:nth-child(1)").first
     await menu_option.wait_for(state="visible")
     await menu_option.click()

@@ -1,6 +1,6 @@
 from playwright.async_api import expect
 from src.base.base_page import BasePage
-from src.utils.generators.course_data_generator import get_image, get_random_data, get_random_name,get_random_digits
+from src.utils.generators.data_generator import get_image, get_random_data, get_random_name,get_random_digits
 from src.utils.helpers.common import pick_date
 from src.utils.helpers.common_checks import check_element_in_table, check_is_btn_enabled
 
@@ -101,7 +101,7 @@ class FillOfferingSteps(BasePage):
             print("=" * 90)
             print(f"Filling Third Step : {step_title}")
             print("=" * 90)
-            reg_fee=await self.page.locator("#registrationFees").type(get_random_digits())
+            reg_fee=await self.page.locator("#registrationFees").type(get_random_digits(4))
             print(f"Registration Fee  : {reg_fee}\t")
 
             reg_fee_ele=self.page.locator("button[name='registrationFeesDueDate']")
@@ -109,7 +109,7 @@ class FillOfferingSteps(BasePage):
             reg_date = await pick_date(self.page, reg_fee_ele, 7)
             print(f"Registration Fee Due Date : {reg_date.strftime('%B %d, %Y')}\t")
 
-            total_fee=await self.page.locator("#totalCourseFee").type(get_random_digits())
+            total_fee=await self.page.locator("#totalCourseFee").type(get_random_digits(4))
             print(f"Total Course Fee  : {total_fee}\t")
             await self.page.locator("#paymentInformation").fill("Monthly Payment")
 

@@ -1,0 +1,15 @@
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta-admin.findyourcourses.org/
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:sheraz@newtales.co
+[32mINFO    [0m TestLogger:login_fixtures.py:27 
+Navigated to : https://beta-admin.findyourcourses.org/portal/dashboard
+[32mINFO    [0m TestLogger:admin_dashboard_page.py:21 
+Navigated to https://beta-admin.findyourcourses.org/portal/training-partners
+[32mINFO    [0m TestLogger:profile_details.py:23 
+Feed back : Complete Your Profile s8i99qcu3n
+[32mINFO    [0m TestLogger:login_page.py:11 
+Navigated to https://beta-tp.findyourcourses.org/login
+[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
+Entered Email:fyctest5401+45@gmail.com
+[32mINFO    [0m TestLogger:test_tp_profile_status.py:59 Verified!! TP Profile Status is 'Need Attention' and Feedback : 'Complete Your Profile s8i99qcu3n' appears in TP's dashboard
