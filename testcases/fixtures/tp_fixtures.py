@@ -1,5 +1,5 @@
 import pytest
-from src.pages.admin.add_new_tp.add_new_tp_steps import AddTPInfo
+from src.pages.admin.training_partners.admin_tp_page import AdminTPPage
 from src.utils.helpers.logger import logger
 
 
@@ -20,7 +20,7 @@ async def setup_new_tp(page,login):
 
     # Fill all three steps
     try:
-        admin_tp = AddTPInfo(page)
+        admin_tp = AdminTPPage(page)
         tp_name = await admin_tp.add_new_tp()
         print(f"\nAdded TP '{tp_name}' Successfully !!")
         return tp_name

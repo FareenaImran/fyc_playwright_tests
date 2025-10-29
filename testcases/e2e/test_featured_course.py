@@ -1,9 +1,9 @@
 import pytest
-
 from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.admin.courses.course_detail_page import CourseDetailPage
-from src.pages.admin.courses.courses_info import CoursesInfo
-from src.utils.helpers.common import get_row_text, select_menu_option, view_course_details
+from src.pages.admin.courses.course_page import AdminCoursePage
+from src.pages.learner.learner_home_page import LearnerHomePage
+from src.utils.helpers.common import view_course_details
 from src.utils.helpers.common_checks import check_success_message, check_element_in_table
 from src.utils.helpers.logger import logger
 
@@ -19,7 +19,7 @@ async def test_featured_course_appears_on_home_page(page,login):
     menu = AdminDashboard(page)
     await menu.navigate_to_courses()
 
-    await page.get_by_role("button", name="Approved").click()
+    await page.get_by_role("button", name=AdminCoursePage.APPROVED_TAB).click()
 
     # find and open un-featured course
     logger.info("\nDoes Any course have Feature value 'No'?")
@@ -45,7 +45,7 @@ async def test_featured_course_appears_on_home_page(page,login):
     await page.wait_for_load_state("domcontentloaded")
 
     #Navigate to Featured Course list
-    featured_course_ele=page.locator("(//div[@aria-roledescription='carousel'])[1]//h3")
+    featured_course_ele=page.locator(LearnerHomePage.FEATURED_COURSE_NAME)
     await featured_course_ele.first.scroll_into_view_if_needed()
     featured_tps=await featured_course_ele.all_inner_texts()
 

@@ -2,6 +2,7 @@ import pytest
 
 from src.pages.admin.add_new_tp.add_new_tp_steps import AddTPInfo
 from src.pages.admin.admin_dashboard_page import AdminDashboard
+from src.pages.admin.training_partners.profile_details import ProfileDetails
 from src.utils.helpers.common import  select_menu_option, get_row_text
 from src.utils.helpers.logger import logger
 
@@ -15,7 +16,7 @@ async def test_edit_tp_profile_picture(page,login,status="Up for review"):
      tp_name = await get_row_text(page, 4,row_no=0)
      if tp_name:
          await select_menu_option(page, 1, tp_name)
-         pro_pic=page.get_by_text("Profile Picture")
+         pro_pic=page.get_by_text(ProfileDetails.PROFILE_PIC)
          await pro_pic.wait_for(state="visible")
          await pro_pic.click()
          logger.info(f"\nUpdating Profile Image for {tp_name}")

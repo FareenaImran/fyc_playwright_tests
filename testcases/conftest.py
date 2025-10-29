@@ -15,10 +15,12 @@ pytest_plugins = [
 
 #Global timeouts for every test
 @pytest.fixture(autouse=True)
-def set_global_timeouts(page):
+def set_global_timeouts(page,request):
+    # Skip if test has no_default_browser marker
+    if request.node.get_closest_marker("no_default_browser"):
+        return
     page.set_default_timeout(30000)              # 30s for locator
     page.set_default_navigation_timeout(70000)   # 70s
-    yield
 
 #Session Start
 def pytest_sessionstart(session):
@@ -29,7 +31,13 @@ def pytest_sessionstart(session):
 
 
 @pytest.fixture(scope="function")
-async def page():
+
+async def page(request):
+    # Skip if test has no_default_browser marker
+    if request.node.get_closest_marker("no_default_browser"):
+        yield None
+        return
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=False,

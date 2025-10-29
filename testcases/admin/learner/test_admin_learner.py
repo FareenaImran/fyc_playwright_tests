@@ -1,13 +1,17 @@
+from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.utils.helpers.common import  count_rows_in_all_pages, get_count
 from src.utils.helpers.logger import logger
 
 async def test_learner_status_count(page,login):
-    '''
+    """
     Test that Learners status count is correct
-    '''
+    """
     await login(page,"admin")
+
     #Navigate to Learners
-    await page.get_by_text("Learners").click()
+    menu=AdminDashboard(page)
+    await menu.navigate_to_learner()
+
     statuses=["All Learners","Activated","De Activated"]
     for status in statuses:
         #get button Count

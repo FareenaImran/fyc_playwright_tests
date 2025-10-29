@@ -4,7 +4,7 @@ import pytest
 from playwright.async_api import expect
 
 from src.base.base_page import BasePage
-from src.utils.generators.data_generator import get_random_digits
+from src.utils.generators.generate_test_data import get_random_digits
 from src.utils.helpers.common_checks import check_success_message, check_and_close_page_modal
 from src.utils.helpers.logger import logger
 from src.utils.helpers.login_helper import login_with_credentials

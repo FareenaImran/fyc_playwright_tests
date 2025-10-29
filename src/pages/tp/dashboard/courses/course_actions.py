@@ -3,18 +3,22 @@ from src.base.base_page import BasePage
 
 
 class CourseActions(BasePage):
-
+    def __init__(self,page):
+        super().__init__(page)
+        self.add_offering=page.get_by_text("Add Offering")
+        self.add_course_offering=page.get_by_role("button",name='Add Course Offering')
+        self.action_btns=page.locator(
+            "button[id^='radix-'][aria-haspopup='menu'][type='button'] >> span:has-text('Open menu')"
+        )
     #Add New Offerings
     async def start_offering(self):
-        await self.page.get_by_text("Add Offering").click()
-        await self.page.get_by_role("button",name='Add Course Offering').click()
+        await self.add_offering.click()
+        await self.add_course_offering.click()
 
 
     #Click on any action button
     async def click_on_action_icon(self):
-        buttons = self.page.locator(
-            "button[id^='radix-'][aria-haspopup='menu'][type='button'] >> span:has-text('Open menu')"
-        )
+        buttons = self.action_btns
         count = await buttons.count()
 
         if count > 0:

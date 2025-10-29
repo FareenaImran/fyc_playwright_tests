@@ -1,4 +1,6 @@
 import pytest
+
+from src.locators.admin_base_locators import AdminLocators
 from src.pages.admin.training_partners.profile_details import ProfileDetails
 from src.utils.helpers.admin.training_partner_helper import navigate_to_crm
 from src.utils.helpers.common_checks import check_element_in_table
@@ -10,7 +12,7 @@ async def test_feedback_added_by_admin_shows_on_top(page,login,navigate_to):
     await navigate_to_crm(page,login,navigate_to)
 
     #add feedback
-    await page.get_by_role("button",name="Add feedback").click()
+    await page.get_by_role("button",name=AdminLocators.ADD_FEEDBACK).click()
     tp_detail = ProfileDetails(page)
     feedback = await tp_detail.send_feedback()
 
@@ -25,7 +27,7 @@ async def test_crm_added_by_admin_shows_on_top(page,login,navigate_to):
     await navigate_to_crm(page, login,navigate_to)
 
     #add crm
-    await page.get_by_role("button",name="Add CRM Note").click()
+    await page.get_by_role("button",name=AdminLocators.ADD_CRM).click()
     tp_detail = ProfileDetails(page)
     crm = await tp_detail.add_crm()
 

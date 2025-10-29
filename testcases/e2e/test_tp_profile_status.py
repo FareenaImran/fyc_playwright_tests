@@ -1,6 +1,8 @@
 import pytest
 from src.pages.admin.admin_dashboard_page import AdminDashboard
+from src.pages.admin.training_partners.admin_tp_page import AdminTPPage
 from src.pages.admin.training_partners.profile_details import ProfileDetails
+from src.pages.tp.dashboard.dashboard_page import TPDashboardPage
 from src.utils.helpers.admin.training_partner_helper import approve_tp_profile, verify_tp_dashboard_status_is_approved
 from src.utils.helpers.common import select_menu_option, get_row_text
 from src.utils.helpers.common_checks import check_success_message
@@ -20,7 +22,7 @@ async def test_send_feedback_to_tp_changes_their_status_to_needs_attention(page,
 
     menu=AdminDashboard(page)
     await menu.navigate_to_tp()
-    await page.get_by_role("button",name="Up for review").click()
+    await page.get_by_role("button",name=AdminTPPage.UP_FOR_REVIEW_TAB).click()
 
     tps_in_under_review = await get_row_text(page, 4)
     available_tps = get_cred_from_csv("trainer")
@@ -41,7 +43,7 @@ async def test_send_feedback_to_tp_changes_their_status_to_needs_attention(page,
 
 
     #send feedback
-    await page.get_by_role("button", name="Send back with feedback").click()
+    await page.get_by_role("button", name=ProfileDetails.SEND_FEEDBACK).click()
     tp_detail=ProfileDetails(page)
     admin_feedback=await tp_detail.send_feedback()
 
@@ -49,11 +51,11 @@ async def test_send_feedback_to_tp_changes_their_status_to_needs_attention(page,
     await login_by_name_or_email(page,"trainer",tp_name)
 
     # get status
-    status=await page.locator("(//p[contains(text(),'Profile Status')]/following-sibling::div/p)[1]").inner_text()
+    status=await page.locator(TPDashboardPage.PROFILE_STATUS).inner_text()
     assert status.strip()=="Need Attention",f"{tp_name} Profile status is not Need Attention"
 
     # feedback
-    tp_feedback=await page.locator("(//p[contains(text(),'profile needs attention')]/following-sibling::div//p)[1]").inner_text()
+    tp_feedback=await page.locator(TPDashboardPage.FEEDBACK_MSG).inner_text()
     assert admin_feedback==tp_feedback,f"Admin's Feedback '{admin_feedback}' != TP's feedback {tp_feedback}"
 
     logger.info(f"Verified!! TP Profile Status is '{status}' and Feedback : '{admin_feedback}' appears in TP's dashboard")

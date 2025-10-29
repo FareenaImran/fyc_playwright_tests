@@ -2,6 +2,7 @@ import pytest
 
 from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.admin.courses.course_detail_page import CourseDetailPage
+from src.pages.admin.training_partners.admin_tp_page import AdminTPPage
 from src.utils.helpers.common import get_row_text, select_menu_option, view_course_details
 from src.utils.helpers.common_checks import check_success_message, check_element_in_table
 from src.utils.helpers.logger import logger
@@ -17,7 +18,7 @@ async def test_admin_can_enable_featured_partner_via_toggle_showing_yes_in_table
     menu = AdminDashboard(page)
     await menu.navigate_to_tp()
 
-    await page.get_by_role("button", name="Approved").click()
+    await page.get_by_role("button", name=AdminTPPage.APPROVED).click()
 
     # find and open un-featured tp
     logger.info("\nDoes Any tp have Feature value 'No'?")

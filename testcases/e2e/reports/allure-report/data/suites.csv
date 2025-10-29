@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Test session persistence in Webkit - known to be unstable.","3599","test_login_session_webkit[admin-https://beta-admin.findyourcourses.org/portal/dashboard]","testcases.e2e","Wed Oct 29 11:39:31 PKT 2025","broken","Wed Oct 29 11:39:35 PKT 2025","","test_login_sessions","",""
+"Test session persistence in Webkit - known to be unstable.","3273","test_login_session_webkit[trainer-https://beta-tp.findyourcourses.org/portal/dashboard]","testcases.e2e","Wed Oct 29 11:39:24 PKT 2025","broken","Wed Oct 29 11:39:28 PKT 2025","","test_login_sessions","",""
+"Test session persistence in Webkit - known to be unstable.","2225","test_login_session_webkit[learner-https://beta.findyourcourses.org/portal/dashboard]","testcases.e2e","Wed Oct 29 11:39:17 PKT 2025","broken","Wed Oct 29 11:39:19 PKT 2025","","test_login_sessions","",""

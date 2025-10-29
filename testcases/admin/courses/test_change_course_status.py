@@ -3,6 +3,8 @@ import pytest
 from playwright.async_api import expect
 from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.admin.courses.course_detail_page import CourseDetailPage
+from src.pages.admin.courses.course_page import AdminCoursePage
+from src.pages.admin.training_partners.admin_tp_page import AdminTPPage
 from src.utils.helpers.common import select_menu_option, get_row_text
 from src.utils.helpers.common_checks import  check_ele_in_all_pages
 from src.utils.helpers.logger import logger
@@ -19,8 +21,8 @@ async def test_change_course_status_from_under_review_to_approved(page,login,rol
     await page.wait_for_load_state("networkidle")
 
     while True:
-        #Change course status from under review ro Approved
-        await page.get_by_role("button",name="Under Review").click()
+        #Change course status from under review to Approved
+        await page.get_by_role("button",name=AdminCoursePage.UNDER_REVIEW_TAB).click()
         #Get course name
         course_name=await get_row_text(page,3,row_no=0)
         if not course_name:
@@ -41,8 +43,8 @@ async def test_change_course_status_from_under_review_to_approved(page,login,rol
         if result is None:
             break
         # Verify course exits in Approved
-        await page.get_by_role("button",name="Approved").click()
-        found,_=await check_ele_in_all_pages(page,course_name,3,"Approved")
+        await page.get_by_role("button",name=AdminTPPage.APPROVED).click()
+        found,_=await check_ele_in_all_pages(page,course_name,3,AdminTPPage.APPROVED)
         assert found, f"Did not get {course_name} in approved list"
 
 

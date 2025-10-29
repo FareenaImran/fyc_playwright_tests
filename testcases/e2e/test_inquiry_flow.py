@@ -3,9 +3,12 @@ import pytest
 
 from src.base.base_page import BasePage
 from src.pages.admin.admin_dashboard_page import AdminDashboard
+from src.pages.admin.learners.learner_details_page import AdminLearnerDetails
 from src.pages.learner.course_detail_page import CourseDetailPage
 from src.pages.learner.course_listing import CourseListing
 from src.pages.learner.dashboard_page import DashboardPage
+from src.pages.learner.learner_home_page import LearnerHomePage
+from src.pages.learner.my_courses.my_courses_page import MyCoursesPage
 from src.pages.tp.dashboard.dashboard_page import TPDashboardPage
 from src.utils.helpers.common import  select_menu_option
 from src.utils.helpers.common_checks import  check_ele_in_all_pages, check_element_in_table
@@ -27,7 +30,7 @@ async def test_inquiry_appears_on_all_portals(page,login):
     learner_name=await home_page.get_learner_name()
     # Navigate to home pg
     await home_page.navigate_to_home_page()
-    await page.get_by_role("button", name="Browse Courses").click()
+    await page.get_by_role("button", name=LearnerHomePage.BROWSE_COURSES).click()
     # Open any course
     course_listing = CourseListing(page)
     course_card = await course_listing.get_random_course_card()
@@ -51,7 +54,7 @@ async def test_inquiry_appears_on_all_portals(page,login):
     dashboard = DashboardPage(page)
     await dashboard.navigate_to_my_courses()
     #Navigate to Inquired Courses
-    await page.get_by_text("Inquired Courses").click()
+    await page.get_by_text(MyCoursesPage.INQUIRED_COURSES).click()
     # Get recent inquiry msg
     found_inquiry,row_data=await check_element_in_table(page, inquiry_msg_sent, 5, "Inquired Courses")
     assert found_inquiry, f"Inquiry {found_inquiry} should be in 'Inquired Courses' but was not found"
@@ -82,7 +85,7 @@ async def test_inquiry_appears_on_all_portals(page,login):
     #View Learner details
     await select_menu_option(page,1,text)
     #View Inquiries
-    await page.locator("//button[contains(text(),'Inquiries')]").click()
+    await page.locator(AdminLearnerDetails.INQUIRIES_TAB).click()
     #Verify recent inquiry
     found_inquiry, row_data = await check_element_in_table(page, inquiry_msg_sent, 1, "Inquiries")
     assert found_inquiry, f"Inquiry {found_inquiry} should be in 'Inquired Courses' but was not found"

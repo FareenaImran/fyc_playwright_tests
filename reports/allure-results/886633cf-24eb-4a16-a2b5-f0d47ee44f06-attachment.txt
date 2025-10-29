@@ -1,7 +1,0 @@
-[32mINFO    [0m TestLogger:test_broken_images.py:21 2 Broken image(s) found
-[32mINFO    [0m TestLogger:test_broken_images.py:23 
- - https://fix-url-76420409067.europe-west1.run.app/images/course_cover.png
-[32mINFO    [0m TestLogger:test_broken_images.py:23 
- - https://fix-url-76420409067.europe-west1.run.app/images/pexels-raulling-28489614.jpg
-[32mINFO    [0m TestLogger:test_broken_images.py:36 
-Verified !! No broken image in Courses

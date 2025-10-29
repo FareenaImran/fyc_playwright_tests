@@ -1,9 +1,0 @@
-[32mINFO    [0m TestLogger:login_page.py:11 
-Navigated to https://beta-admin.findyourcourses.org/
-[32mINFO    [0m src.base.login_page.LoginPage:login_page.py:15 
-Entered Email:sheraz@newtales.co
-[32mINFO    [0m TestLogger:login_fixtures.py:27 
-Navigated to : https://beta-admin.findyourcourses.org/portal/dashboard
-[32mINFO    [0m TestLogger:side_menu.py:23 Navigated to : https://beta-admin.findyourcourses.org/portal/learners
-[32mINFO    [0m TestLogger:profile_details.py:50 
-CRM note : Need to discuss about  s4ci27kfwl

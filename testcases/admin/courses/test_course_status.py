@@ -3,9 +3,9 @@ from src.utils.helpers.common import  count_rows_in_all_pages, get_count
 from src.utils.helpers.logger import logger
 
 async def test_course_status_count(page,login):
-    '''
+    """
     Test that Course status count is correct
-    '''
+    """
     await login(page,"admin")
     #Navigate to Courses
     dashboard=AdminDashboard(page)

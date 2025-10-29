@@ -2,6 +2,8 @@ import pytest
 
 from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.admin.courses.course_detail_page import CourseDetailPage
+from src.pages.admin.training_partners.admin_tp_page import AdminTPPage
+from src.pages.learner.learner_home_page import LearnerHomePage
 from src.utils.helpers.common import view_course_details
 from src.utils.helpers.common_checks import check_success_message, check_element_in_table
 from src.utils.helpers.logger import logger
@@ -18,7 +20,7 @@ async def test_featured_tp_appears_on_home_page(page,login):
     menu=AdminDashboard(page)
     await menu.navigate_to_tp()
 
-    await page.get_by_role("button",name="Approved").click()
+    await page.get_by_role("button",name=AdminTPPage.APPROVED).click()
     # find and open un-featured course
     logger.info("\nDoes Any TP have Feature value 'No'?")
     unchecked, row = await check_element_in_table(page, 'No', 10, "Approved")
@@ -44,7 +46,7 @@ async def test_featured_tp_appears_on_home_page(page,login):
     await page.wait_for_load_state("domcontentloaded")
 
     #Navigate to Featured TP list
-    featured_tps_ele=page.locator("(//div[@aria-roledescription='carousel'])[2]//h3")
+    featured_tps_ele=page.locator(LearnerHomePage.FEATURED_TP_NAME)
     await featured_tps_ele.first.scroll_into_view_if_needed()
     featured_tps=await featured_tps_ele.all_inner_texts()
 

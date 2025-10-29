@@ -1,2 +1,0 @@
-[32mINFO    [0m TestLogger:login_page.py:11 
-Navigated to https://beta-admin.findyourcourses.org/

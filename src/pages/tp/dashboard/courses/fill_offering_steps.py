@@ -1,46 +1,55 @@
 from playwright.async_api import expect
 from src.base.base_page import BasePage
-from src.utils.generators.data_generator import get_image, get_random_data, get_random_name,get_random_digits
+from src.locators.common_locators import CommonLocators
+from src.utils.generators.generate_test_data import get_image, get_random_data, get_random_name,get_random_digits
 from src.utils.helpers.common import pick_date
 from src.utils.helpers.common_checks import check_element_in_table, check_is_btn_enabled
 
 
 class FillOfferingSteps(BasePage):
+    def __init__(self,page):
+        super().__init__(page)
+        self.first_step_title=page.get_by_text("Add details for your next batch")
+        self.mode_of_teaching=page.locator("#modeOfTeaching")
+        self.learning_methodology=page.get_by_label("Recorded Lectures")
+        self.upload_option=page.locator('input[type="file"]')
+        self.img_alt=page.locator('img[alt="Uploaded course image"]')
+        self.inst_name=page.locator("#instructorName")
+        self.about_inst=page.locator("#instructorAbout")
+        self.inst_linkedin=page.locator("#instructorLinkedin")
+        self.add_inst=page.get_by_role("button",name="Add instructor")
+        self.collaboration_with=page.locator("#collaborationWith")
+        self.submit_for_review_btn="button[id='submit-btn']"
 
     async def fill_first_step(self):
         try:
-            step_title = await self.page.get_by_text("Add details for your next batch").text_content()
+            step_title = await self.first_step_title.text_content()
             print("="*90)
             print(f"Filling First Step : {step_title}")
             print("=" * 90)
-            print(f"\n Mode of Teaching ")
-            mode_of_teaching=self.page.locator("#modeOfTeaching")
-            await mode_of_teaching.click()
-            await mode_of_teaching.select_option(value="Self Paced")
+            await self.mode_of_teaching.click()
+            await self.mode_of_teaching.select_option(value="Self Paced")
             # await select_random_dropdown_option(self.page,mode_of_teaching)
-            print(f"\n Learning Methodology")
             # learning_method=self.page.locator('input[name="learningMethod"]')
             # await select_random_checkbox(self.page,learning_method)
-            await self.page.get_by_label("Recorded Lectures").check()
+            await self.learning_methodology.check()
 
             #Instructor Info
-            await self.page.locator('input[type="file"]').set_input_files(get_image("instructor.jpg"))
-            await expect(self.page.locator('img[alt="Uploaded course image"]')).to_be_visible()
-            await self.page.locator("#instructorName").fill(get_random_name())
-            instructor_name=await self.page.locator("#instructorName").get_attribute("value")
-            await self.page.locator("#instructorAbout").fill(f"{instructor_name} "+get_random_data())
-            await self.page.locator("#instructorLinkedin").fill("https://www.linkedin.com/in/xyz")
-            add_instructor=self.page.get_by_role("button",name="Add instructor")
-            await add_instructor.click()
+            await self.upload_option.set_input_files(get_image("instructor.jpg"))
+            await expect(self.img_alt).to_be_visible()
+            await self.inst_name.fill(get_random_name())
+            instructor_name=await self.inst_name.get_attribute("value")
+            await self.about_inst.fill(f"{instructor_name} "+get_random_data())
+            await self.inst_linkedin.fill("https://www.linkedin.com/in/xyz")
+            await self.add_inst.click()
             #Verify instructor added in table
             await check_element_in_table(self.page,instructor_name,2,"Instructor Table Below")
 
             #In Collaboration With
-            await self.page.locator("#collaborationWith").fill("TestCollab - ABC Training "+get_random_data())
+            await self.collaboration_with.fill("TestCollab - ABC Training "+get_random_data())
 
             #Next Button
-            next_btn=self.page.get_by_role("button",name="Next")
-            await check_is_btn_enabled(self,next_btn)
+            await check_is_btn_enabled(self.page,CommonLocators.NEXT_BTN)
 
         except Exception as e:
             raise Exception(f"while adding 2nd step of offering :{str(e)}")
@@ -88,8 +97,7 @@ class FillOfferingSteps(BasePage):
             print(f"UnPublish Date: {unpublish_date.strftime('%B %d, %Y')}")  #M D, Y
 
             #Next Btn
-            next_btn = self.page.locator("button[id='submit-btn']")
-            await check_is_btn_enabled(self.page, next_btn)
+            await check_is_btn_enabled(self.page,CommonLocators.NEXT_BTN)
 
         except Exception as e:
             raise Exception(f"while adding 2nd step of offering :{str(e)}")
@@ -118,8 +126,7 @@ class FillOfferingSteps(BasePage):
             total_fee_date = await pick_date(self.page, total_fee_ele, 7)
             print(f"Total Fee Due Date: {total_fee_date.strftime('%B %d, %Y')}\t")
 
-            next_btn = self.page.locator("button[id='submit-btn']")
-            await check_is_btn_enabled(self.page, next_btn)
+            await check_is_btn_enabled(self.page, self.submit_for_review_btn)
 
         except Exception as e:
             raise Exception(f"while adding 2nd step of offering :{str(e)}")

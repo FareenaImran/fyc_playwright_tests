@@ -1,16 +1,16 @@
 import re
-from src.locators.base_locators.common_locators import CommonLocators
-from src.locators.base_locators.login_locators import LoginLocators
-from src.utils.generators.data_generator import get_image
+
+from src.locators.common_locators import CommonLocators
+from src.utils.generators.generate_test_data import get_image
 from src.utils.helpers.logger import logger
 from playwright.async_api import expect, Error
 
 
 #Check btn is enabled?
 async def check_is_btn_enabled(page,btn):
-    await btn.scroll_into_view_if_needed()
-    await expect(btn).to_be_enabled()
-    await btn.click()
+    await page.locator(btn).scroll_into_view_if_needed()
+    await expect(page.locator(btn)).to_be_enabled()
+    await page.locator(btn).click()
 
 #Check Broken Images
 async def check_broken_images(page):
@@ -97,8 +97,8 @@ async def check_and_close_page_modal(page):
 #Login Error
 async def check_login_error_message(page):
     try:
-        await page.wait_for_selector(LoginLocators.EMAIL_ERR_MSG)
-        error_locator = page.locator(LoginLocators.EMAIL_ERR_MSG).filter(has_text=re.compile(
+        await page.wait_for_selector(CommonLocators.ERR_MSG)
+        error_locator = page.locator(CommonLocators.ERR_MSG).filter(has_text=re.compile(
                 r"(invalid|valid email address|invalid-credential|account not activated)",re.IGNORECASE)).first
 
         if await error_locator.is_visible():

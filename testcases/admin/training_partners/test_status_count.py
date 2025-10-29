@@ -1,16 +1,20 @@
 import pytest
 
+from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.utils.helpers.common import  count_rows_in_all_pages, get_count
 from src.utils.helpers.logger import logger
 
 @pytest.mark.smoke_checklist
 async def test_tp_status_count(page,login):
-    '''
+    """
     Test that All TPs  status count is correct
-    '''
+    """
     await login(page,"admin")
+
     #Navigate to TP
-    await page.get_by_text("Training Partners").click()
+    menu=AdminDashboard(page)
+    await menu.navigate_to_tp()
+
     statuses=["All TPs","In Progress","Up for review","Needs Attention","Approved","Unpublished"]
     for status in statuses:
         #get button Count

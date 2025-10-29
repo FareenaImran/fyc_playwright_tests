@@ -1,31 +1,31 @@
 import random
+
 from src.base.base_page import BasePage
-from src.locators.learner_locators.home_page_locators import HomePageLocators
+from src.pages.learner.learner_home_page import LearnerHomePage
 
 
 class CourseListing(BasePage):
     def __init__(self, page):
         super().__init__(page)
         self.page = page
+        self.course_card = page.locator("div.group.cursor-pointer")
 
     async def get_random_course_card(self):
-        course_cards = self.page.locator(HomePageLocators.COURSE_CARD)
         print(f"\nNavigated to : {self.page.url}")
-        await course_cards.first.wait_for(state="visible")
-        total = await course_cards.count()
+        await self.course_card.first.wait_for(state="visible")
+        total = await self.course_card.count()
         if total==0:
             print("No Course cards found!")
         print(f"\nTotal Course cards present :{total}")
         rand_index=random.randint(0,total-1)
-        random_card=course_cards.nth(rand_index)
+        random_card=self.course_card.nth(rand_index)
         return random_card
 
     async def get_random_unbookmarked_course(self):
-        await self.page.get_by_role("button", name="Browse Courses").click()
+        await self.page.get_by_role("button",name=LearnerHomePage.BROWSE_COURSES).click()
         print(f"Navigated To : {self.page.url}")
-        course_cards = self.page.locator(HomePageLocators.COURSE_CARD)
-        await course_cards.first.wait_for(state="visible")
-        unbookmarked_icons=course_cards.get_by_label("Add to bookmarks")
+        await self.course_card.first.wait_for(state="visible")
+        unbookmarked_icons=self.course_card.get_by_label("Add to bookmarks")
         total = await unbookmarked_icons.count()
         print(f"\nTotal Unbookmarked Courses : {total}")
         if total==0:

@@ -1,4 +1,5 @@
 from src.pages.admin.admin_dashboard_page import AdminDashboard
+from src.pages.admin.learners.admin_learners import AdminLearner
 from src.utils.helpers.admin.learner_helper import change_account_status
 from src.utils.helpers.common_checks import check_success_message, check_login_error_message
 from src.utils.helpers.logger import logger
@@ -17,7 +18,7 @@ async def test_deactivate_learner_account_prevents_login(page,login):
     await menu.navigate_to_learner()
 
     #Navigate to activated list
-    await page.get_by_role("button", name="Activated").first.click()
+    await page.get_by_role("button", name=AdminLearner.STATUS_ACTIVATED).first.click()
 
     #Change account status from activated to deactivated
     target_email = await change_account_status(page, "activate")
@@ -48,7 +49,7 @@ async def test_activate_learner_account_allows_login(page,login):
     await menu.navigate_to_learner()
 
     #Navigate to deactivated list
-    await page.get_by_role("button", name="De Activated").first.click()
+    await page.get_by_role("button", name=AdminLearner.STATUS_DEACTIVATED).first.click()
 
     #Change account status from deactivated to activated
     target_email = await change_account_status(page, "deactivate")

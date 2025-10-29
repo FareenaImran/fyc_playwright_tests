@@ -1,16 +1,30 @@
 import re
 import pytest
 from src.base.base_page import BasePage
-from src.utils.generators.data_generator import get_random_data
-from src.utils.helpers.common import find_and_open_card_by_element
-from src.utils.helpers.logger import logger
+from src.utils.generators.generate_test_data import get_random_data
 
 
 class CourseDetailPage(BasePage):
+    def __init__(self,page):
+        super().__init__(page)
+        self.tp_name=page.locator("div.flex-1>p[title]")
+        self.course_name=page.locator("div>h1")
+        self.enroll_now=page.get_by_role("button", name="Enroll Now")
+        self.already_submitted_text=page.locator("//h2[normalize-space()='Application Already Submitted']")
+        self.submit_application=page.get_by_role("button", name="Submit Application")
+        self.complete_application=page.get_by_role("button",name="Complete Application")
+        self.learn_more=page.get_by_role("button", name="Learn More")
+        self.course_inquiry=page.get_by_text("Course Inquiry")
+        self.contact_method_dropdown=page.locator("[name='contactMethod']")
+        self.inquiry_type_dropdown=page.locator("[name='inquiryType']")
+        self.inquiry_textarea=page.locator("textarea[name='message']")
+        self.send_inquiry=page.get_by_role("button", name="Send Inquiry")
+        self.inquiry_modal_close_btn=page.locator("svg.absolute.top-3")
+        self.success_msg=page.get_by_text("Thanks! We've Shared Your Inquiry With the Training Partner")
 
-    #Get TP name from course detail page
+     #Get TP name from course detail page
     async def get_tp_name(self):
-        tp_name=await self.page.locator("div.flex-1>p[title]").inner_text()
+        tp_name=await self.tp_name.inner_text()
         if not tp_name:
             raise Exception("Did not get TP name")
         print(f"\nGet TP name :{tp_name}")
@@ -18,7 +32,7 @@ class CourseDetailPage(BasePage):
 
     #Get Course name from course detail page
     async def get_course_name(self):
-        course_name=await self.page.locator("div>h1").inner_text()
+        course_name=await self.course_name.inner_text()
         if not course_name:
             raise Exception("Did not get Course name")
         print(f"\nGet Course Name : {course_name}")
@@ -26,14 +40,14 @@ class CourseDetailPage(BasePage):
 
     #Open enrollment pop
     async def open_and_verify_enrollment_modal(self):
-        await self.page.get_by_role("button", name="Enroll Now").first.click()
+        await self.enroll_now.first.click()
         await self.page.wait_for_load_state("domcontentloaded")
-        app_already_sub=self.page.locator("//h2[normalize-space()='Application Already Submitted']")
+        app_already_sub=self.already_submitted_text
         if await app_already_sub.is_visible():
             return True
         #Wait for enrollment modal to be visible
-        await self.page.get_by_role("button", name="Submit Application").click()
-        complete_app=self.page.get_by_role("button",name="Complete Application")
+        await self.submit_application.click()
+        complete_app=self.complete_application
         if await complete_app.is_visible():
             pytest.skip("Application is not complete, Skipping this test..... ")
         #Wait for enrollment verification modal to be visible
@@ -43,18 +57,18 @@ class CourseDetailPage(BasePage):
     #Click on 'Learn More' and wait for modal to be visible
     async def open_inquiry_popup(self):
         await self.page.wait_for_load_state("domcontentloaded")
-        await self.page.get_by_role("button", name="Learn More").first.click()
-        await self.page.get_by_text("Course Inquiry").wait_for(state="visible")
+        await self.learn_more.first.click()
+        await self.course_inquiry.wait_for(state="visible")
 
     #Fill Inquiry
     async def fill_inquiry_form(self):
-        contact_method=self.page.locator("[name='contactMethod']")
+        contact_method=self.contact_method_dropdown
         await contact_method.select_option(value="WhatsApp")
 
-        inquiry_type = self.page.locator("[name='inquiryType']")
+        inquiry_type = self.inquiry_type_dropdown
         await inquiry_type.select_option(value="Pricing & Payment Options")
 
-        msg_locator=self.page.locator("textarea[name='message']")
+        msg_locator=self.inquiry_textarea
         await msg_locator.fill(get_random_data())
         msg=await msg_locator.input_value()
 
@@ -65,25 +79,7 @@ class CourseDetailPage(BasePage):
 
     #Submit Inquiry Form
     async def submit_inquiry_form(self):
-        await self.page.get_by_role("button", name="Send Inquiry").click()
-        await self.page.get_by_text("Thanks! We've Shared Your Inquiry With the Training Partner").wait_for(state="visible")
-        await self.page.locator("svg.absolute.top-3").click()
+        await self.send_inquiry.click()
+        await self.success_msg.wait_for(state="visible")
+        await self.inquiry_modal_close_btn.click()
 
-    #Verify Claim Option
-    async def verify_claim_option_visible(self,tp_name):
-
-        # Navigate to Training Partners
-        url="https://beta.findyourcourses.org/training-partner"
-        await self.page.goto(url)
-        logger.info(f"\nNavigated to {url}")
-
-        # get all tp names
-        all_elements = self.page.locator("div.group.relative h3[title]")
-        await find_and_open_card_by_element(self.page, all_elements, tp_name)
-
-        # Is claim profile button visible?
-        claim_profile = self.page.get_by_role("button", name="Claim Profile")
-        await claim_profile.wait_for(state="attached")
-        found = await claim_profile.is_visible()
-
-        return found

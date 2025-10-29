@@ -1,20 +1,23 @@
 from src.base.base_page import BasePage
-from src.locators.base_locators.login_locators import LoginLocators
-from src.utils.helpers.common_checks import check_success_message, check_login_error_message
 from src.utils.helpers.logger import logger
 
 
 class LoginPage(BasePage):
+    def __init__(self,page):
+        super().__init__(page)
+        self.email = "#email"
+        self.password="#password"
+        self.login_btn="//button[@type='submit']"
 
     async def login(self,email,password):
 
         logger.info(f"\nNavigated to {self.page.url}")
 
-        await self.page.locator(LoginLocators.EMAIL).fill(email)
-        await self.page.locator(LoginLocators.PASSWORD).fill(password)
+        await self.page.locator(self.email).fill(email)
+        await self.page.locator(self.password).fill(password)
         self.logger.info(f"\nEntered Email:{email}")
 
-        login_btn=self.page.locator(LoginLocators.LOGIN_BTN)
+        login_btn=self.page.locator(self.login_btn)
 
         if await login_btn.is_disabled():
             self.logger.info(f"Login Button is Disabled")
