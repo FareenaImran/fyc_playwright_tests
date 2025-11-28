@@ -1,7 +1,7 @@
 import re
 import pytest
 from playwright.async_api import expect
-from src.utils.helpers.common_checks import check_login_error_message, check_success_message
+from src.utils.helpers.common_checks import check_err_msg, check_success_message
 from src.utils.helpers.csv_reader import get_random_credentials_from_google_sheet
 from src.utils.helpers.logger import logger
 from src.utils.helpers.login_helper import login_with_credentials
@@ -15,7 +15,7 @@ async def test_login_with_valid_credentials(page,role):
     await login_with_credentials(page,role,user["email"],user["password"])
 
     # Check for error message
-    err_msg = await check_login_error_message(page)
+    err_msg = await check_err_msg(page)
     if err_msg:
          pytest.fail(f"\nLogin Failed!!")
 
@@ -36,7 +36,7 @@ async def test_login_with_invalid_email(page,role):
     await login_with_credentials(page,role,"john!doe@example.com", "test-login")
 
     #Check for error msg
-    error_message=await check_login_error_message(page)
+    error_message=await check_err_msg(page)
     if error_message:
        logger.info(f"Login Failed !! Error:{error_message}")
 

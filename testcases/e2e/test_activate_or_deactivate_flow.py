@@ -1,7 +1,7 @@
 from src.pages.admin.admin_dashboard_page import AdminDashboard
 from src.pages.admin.learners.admin_learners import AdminLearner
 from src.utils.helpers.admin.learner_helper import change_account_status
-from src.utils.helpers.common_checks import check_success_message, check_login_error_message
+from src.utils.helpers.common_checks import check_success_message, check_err_msg
 from src.utils.helpers.logger import logger
 from src.utils.helpers.login_helper import login_by_name_or_email
 
@@ -32,7 +32,7 @@ async def test_deactivate_learner_account_prevents_login(page,login):
     await login_by_name_or_email(page,"learner",target_email)
 
     #verify deactivation msg
-    err_msg = await check_login_error_message(page)
+    err_msg = await check_err_msg(page)
     assert "account is not activated" in err_msg
 
     logger.info(f"Verified!! Got Message > {err_msg}")

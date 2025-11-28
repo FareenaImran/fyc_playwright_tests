@@ -1,0 +1,1 @@
+{"name": "test_category_filter_displays_correct_courses", "status": "passed", "start": 1762261713931, "stop": 1762261741749, "uuid": "dd4b8ccb-ff38-4382-9595-3a9ca017aebd", "testCaseId": "06fbfa8497a7d6494ba5da3f68a28ffb", "fullName": "testcases.learner.test_filters#test_category_filter_displays_correct_courses", "titlePath": ["testcases", "learner", "test_filters.py"]}

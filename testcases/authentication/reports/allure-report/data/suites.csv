@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Learner Signup With Existing Email","9381","test_learner_signup_with_existing_email_shows_error_message","testcases.authentication","Wed Oct 29 17:04:06 PKT 2025","broken","Wed Oct 29 17:04:16 PKT 2025","","test_signup","",""

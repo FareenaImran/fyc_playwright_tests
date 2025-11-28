@@ -95,11 +95,11 @@ async def check_and_close_page_modal(page):
         pass
 
 #Login Error
-async def check_login_error_message(page):
+async def check_err_msg(page):
     try:
         await page.wait_for_selector(CommonLocators.ERR_MSG)
         error_locator = page.locator(CommonLocators.ERR_MSG).filter(has_text=re.compile(
-                r"(invalid|valid email address|invalid-credential|account not activated)",re.IGNORECASE)).first
+                r"(failed|invalid|valid email address|invalid-credential|account not activated|error)",re.IGNORECASE)).first
 
         if await error_locator.is_visible():
             return await error_locator.text_content()

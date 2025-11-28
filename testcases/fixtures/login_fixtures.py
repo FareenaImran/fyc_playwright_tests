@@ -2,7 +2,7 @@ import re
 
 import pytest
 from playwright.async_api import expect
-from src.utils.helpers.common_checks import check_login_error_message, check_and_close_page_modal
+from src.utils.helpers.common_checks import check_err_msg, check_and_close_page_modal
 from src.utils.helpers.csv_reader import get_untried_emails
 from src.utils.helpers.logger import logger
 from src.utils.helpers.login_helper import login_with_credentials
@@ -18,7 +18,7 @@ async def login():
             user_email = user["email"]
             tried_emails.add(user_email)
             await login_with_credentials(page, role, user_email, user["password"])
-            err_msg = await check_login_error_message(page)
+            err_msg = await check_err_msg(page)
             if err_msg:
                 continue
             await page.wait_for_load_state("networkidle")

@@ -1,0 +1,3 @@
+[32mINFO    [0m TestLogger:test_filters.py:43 
+
+'Verified !! Category Filter is working as expected

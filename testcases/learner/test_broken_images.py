@@ -1,6 +1,4 @@
 import pytest
-from playwright.sync_api import expect
-
 from src.utils.helpers.common_checks import check_broken_images
 from src.utils.helpers.logger import logger
 
